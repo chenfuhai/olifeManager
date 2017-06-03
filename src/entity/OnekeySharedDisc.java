@@ -7,9 +7,13 @@ package entity;
 public class OnekeySharedDisc {
 	private String discId;
 	private String sharedMessageId; //分享结果ID
-    private String  userId;
+    private String userId;
     private String userImgUrl;
-    private String  username;
+    private String username;
+    private Boolean usersex;
+    private String userage;   
+    private String message;//评论内容
+    
     public String getDiscId() {
 		return discId;
 	}
@@ -18,10 +22,7 @@ public class OnekeySharedDisc {
 		this.discId = discId;
 	}
 
-	private Boolean  usersex;
-    private String  userage;
-
-    private String message;//评论内容
+	
 
 
     public OnekeySharedDisc(String sharedMessageId, String userId) {

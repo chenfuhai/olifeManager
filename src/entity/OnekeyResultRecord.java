@@ -2,7 +2,7 @@ package entity;
 
 public class OnekeyResultRecord {
 	private String recordId;
-	private String userId2;
+	private String userId;
 	private String resultMark;//结果总分数
     private Double lng;
     private Double lat;
@@ -13,10 +13,10 @@ public class OnekeyResultRecord {
 		this.recordId = recordId;
 	}
 	public String getUserId2() {
-		return userId2;
+		return userId;
 	}
-	public void setUserId2(String userId2) {
-		this.userId2 = userId2;
+	public void setUserId2(String userId) {
+		this.userId = userId;
 	}
 	public String getResultMark() {
 		return resultMark;

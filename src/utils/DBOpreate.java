@@ -25,6 +25,7 @@ public class DBOpreate {
 			e.printStackTrace();
 		}
 	}
+	
 	public static ResultSet executeQuery(String sql){
 		init();
 		ResultSet resultSet = null;
