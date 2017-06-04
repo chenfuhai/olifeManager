@@ -5,12 +5,43 @@
 
 <struts>
 
-
-    <package name="default" namespace="/" extends="json-default">
-    	<action name="" class="android.">
+    <package name="android" namespace="/" extends="json-default">
+    	<action name="Comment_getAction" class="android.Comment_getAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
-        </action>	
+        </action>
+        <action name="Comment_submitAction" class="android.Comment_submitAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="Goods_searchAction" class="android.Goods_searchAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="ShareInformation_getAction" class="android.ShareInformation_getAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="TestResult_getAction" class="android.TestResult_getAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="TestResult_saveAction" class="android.TestResult_saveAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="User_loginByPwdAction" class="android.User_loginByPwdAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="User_manageAction" class="android.User_manageAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="User_resisterByPwdAction" class="android.User_resisterByPwdAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
     </package>
 
     

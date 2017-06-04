@@ -15,7 +15,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import net.sf.json.JSONObject;
 import utils.DBOpreate;
-
+/**
+ * 获取测试结果 需完善
+ */
 public class TestResult_getAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	HttpServletRequest request;
 	HttpServletResponse response;
@@ -70,8 +72,8 @@ public class TestResult_getAction extends ActionSupport implements ServletReques
 	}
 
 	public String execute() throws IOException {
-		// 获取用户ID
-		userId = request.getParameter("");
+		
+		
 		sql = "";
 
 		ResultSet result = DBOpreate.executeQuery(sql);

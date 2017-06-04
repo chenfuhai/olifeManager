@@ -12,7 +12,9 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
-
+/**
+ * 保存测试结果 需完善
+ */
 public class TestResult_saveAction extends ActionSupport implements ServletRequestAware,ServletResponseAware{
 	HttpServletRequest request;
 	HttpServletResponse response;
@@ -57,8 +59,7 @@ public class TestResult_saveAction extends ActionSupport implements ServletReque
 		this.request = arg0;
 	}
 	public String execute() throws IOException{
-		//获取用户ID
-		userId = request.getParameter("");
+		
 		sql="";
 		
 		boolean flag = DBOpreate.execute(sql);

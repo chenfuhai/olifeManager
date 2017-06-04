@@ -15,7 +15,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import net.sf.json.JSONObject;
 import utils.DBOpreate;
-
+/**
+ * 分享信息需完善
+ */
 public class ShareInformation_getAction extends ActionSupport implements ServletRequestAware,ServletResponseAware{
 	HttpServletResponse response;
 	HttpServletRequest request;
@@ -124,7 +126,7 @@ public class ShareInformation_getAction extends ActionSupport implements Servlet
 	}
 	
 	public String execute() throws IOException{
-		userId = request.getParameter("");
+		
 		sql="";
 		ResultSet result = DBOpreate.executeQuery(sql);
 		this.response.setContentType("text/html");

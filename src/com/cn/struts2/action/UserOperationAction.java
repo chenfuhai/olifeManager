@@ -1,23 +1,16 @@
-package android;
+package com.cn.struts2.action;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
+import java.sql.ResultSet;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
 /**
- * 用户管理 需完善
+ * 用户管理
+ * @author wuguofei
+ *
  */
-public class User_manageAction extends ActionSupport implements ServletRequestAware,ServletResponseAware{
-	HttpServletRequest request;
-	HttpServletResponse response;
+public class UserOperationAction extends ActionSupport{
 	private String userId;
 	private String userName;
 	private String userPwd;
@@ -29,7 +22,6 @@ public class User_manageAction extends ActionSupport implements ServletRequestAw
 	private String emailVe;
 	private String brithday;
 	private String sql;
-
 	public String getUserId() {
 		return userId;
 	}
@@ -90,27 +82,39 @@ public class User_manageAction extends ActionSupport implements ServletRequestAw
 	public void setBrithday(String brithday) {
 		this.brithday = brithday;
 	}
-	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		// TODO Auto-generated method stub
-		this.response = arg0;
-	}
-	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		// TODO Auto-generated method stub
-		this.request = arg0;
-	}
 	
-	public String execute() throws IOException{
-		this.response.setContentType("text/html");
-		this.response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		
-		sql = "";
+	/**
+	 * 显示
+	 */
+	public String user_show(){
+		sql="select * from ouser";
+		ResultSet flag = DBOpreate.executeQuery(sql);
+		if(flag != null){
+			//执行具体操作
+		}
+		return null; 
+	}
+	/**
+	 * 删除
+	 */
+	public String user_dalete(){
+		sql="delete from ouser where userid = '" + userId + "'";
 		boolean flag = DBOpreate.execute(sql);
 		if(flag == true){
-			out.print("修改成功");
-			out.flush();
+			//执行具体操作
+		}
+		return null;
+	}
+	
+	/**
+	 * 编辑用户
+	 */
+	public String user_update(){
+		sql="update ouser set username = '"+userName+"'and userpwd = '"+userPwd+"'and phoneNum = '"+phoneNum+"'and sex = '"+sex+"'"
+				+ "and imgUrl = '"+imgUrl+"'and email = '"+email+"'and brithday = '"+brithday+"'where userid = '"+userId+"'";
+		boolean flag = DBOpreate.execute(sql);
+		if(flag == true){
+			//执行具体操作
 		}
 		return null;
 	}

@@ -12,7 +12,9 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
-
+/**
+ * 用户登录 需完善
+ */
 public class User_loginByPwdAction extends ActionSupport implements ServletRequestAware,ServletResponseAware{
 	HttpServletRequest request;
 	HttpServletResponse response;
@@ -44,8 +46,7 @@ public class User_loginByPwdAction extends ActionSupport implements ServletReque
 		this.request = arg0;
 	}
 	public String execute() throws IOException{
-		userId = request.getParameter("");
-		userPwd = request.getParameter("");
+	
 		this.response.setContentType("text/html");
 		this.response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
@@ -53,6 +54,8 @@ public class User_loginByPwdAction extends ActionSupport implements ServletReque
 		boolean flag = DBOpreate.execute(sql);
 		if(flag == true){
 			out.print("登录成功");
+		}else{
+			out.print("用户名或密码错误");
 		}
 		return null;
 	}

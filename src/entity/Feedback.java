@@ -10,6 +10,7 @@ public class Feedback {
     private String userName;
     private String userAge;
     private String userSex;
+    private String feedbackMsg;
     
 
 	//联系方式
@@ -20,9 +21,17 @@ public class Feedback {
     public String getFeedbackId() {
 		return feedbackId;
 	}
-
+    
 	public void setFeedbackId(String feedbackId) {
 		this.feedbackId = feedbackId;
+	}
+	
+	public String getFeedbackMsg() {
+		return feedbackMsg;
+	}
+
+	public void setFeedbackMsg(String feedbackMsg) {
+		this.feedbackMsg = feedbackMsg;
 	}
 
 	public String getQq() {

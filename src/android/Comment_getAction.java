@@ -126,8 +126,7 @@ public class Comment_getAction extends ActionSupport implements ServletRequestAw
 	
 	public String execute() throws IOException{
 		
-		//首先获取评论ID以及用户ID
-		userId = request.getParameter("");
+		
 		
 		
 		//然后进行查找操作
@@ -145,6 +144,7 @@ public class Comment_getAction extends ActionSupport implements ServletRequestAw
 				array.put("message", result.getString("message"));
 				
 				out.print(array.toString());
+				out.flush();
 				System.out.println("获取评论成功");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -152,6 +152,7 @@ public class Comment_getAction extends ActionSupport implements ServletRequestAw
 			}
 		}else{
 			out.print("获取评论失败");
+			out.flush();
 		}
 		return null;	
 	}

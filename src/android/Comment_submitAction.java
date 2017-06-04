@@ -20,7 +20,7 @@ public class Comment_submitAction extends ActionSupport implements ServletReques
 	HttpServletRequest request;
 	HttpServletResponse response;
 	private String userId;
-	private String discmessage;
+	private String message;
 	private String sql;
 
 	public String getUserId() {
@@ -31,12 +31,12 @@ public class Comment_submitAction extends ActionSupport implements ServletReques
 		this.userId = userId;
 	}
 
-	public String getDiscmessage() {
-		return discmessage;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setDiscmessage(String discmessage) {
-		this.discmessage = discmessage;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	@Override
@@ -52,10 +52,8 @@ public class Comment_submitAction extends ActionSupport implements ServletReques
 	}
 
 	public String execute() throws IOException {
-		// 首先获取评论ID以及用户ID
-		userId = request.getParameter("");
-
-		// 然后进行查找操作
+		
+		// 然后进行操作
 		sql = "";
 		
 		boolean flag = DBOpreate.execute(sql);
