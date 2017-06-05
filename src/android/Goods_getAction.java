@@ -16,7 +16,7 @@ import utils.DBOpreate;
  * 利用http协议
  * 采用接口注入的方式注入HttpServletRequest,HttpServletResponse对象
  */
-public class Goods_searchAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+public class Goods_getAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
 	
 	private static final long serialVersionUID = 1L;
 	//利用http协议获取服务器端数据

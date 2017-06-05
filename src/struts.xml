@@ -14,7 +14,7 @@
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
-        <action name="Goods_searchAction" class="android.Goods_searchAction">
+        <action name="Goods_getAction" class="android.Goods_getAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
@@ -42,6 +42,23 @@
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
+    </package>
+    <!-- 待完善 -->
+    <package name="com.cn.struts2.action" namespace="/" extends="struts-default">
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.DiscOperationAction">
+    	</action>
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.FeedbackOperationAction">
+    	</action>
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.GoodsOperationAction">
+    	</action>
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.LoginAction">
+    	</action>
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.ShareOperationAction">
+    	</action>
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.TestResultAction">
+    	</action>
+    	<action name="DiscOperationAction" class="com.cn.struts2.action.UserOperationAction">
+    	</action>
     </package>
 
     
