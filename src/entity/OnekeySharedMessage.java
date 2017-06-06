@@ -1,196 +1,203 @@
 package entity;
 
+
+
+/**
+ * ä¸€é”®æ£€æµ‹ç»“æœåˆ†äº«ç±» åŒ…å«ç”¨æˆ·çš„ä½ç½®ä¿¡æ¯ æ£€æµ‹çš„ç»“æœä¿¡æ¯ ç”¨æˆ·çš„ä¿¡æ¯ç­‰
+ * Created by chenfuhai on 2016/12/16 0016.
+ */
+
 public class OnekeySharedMessage {
-	private String messageId;
-	private Integer resultMark;// ½á¹û×Ü·ÖÊı
-	private Integer ben;// ±½ÏêÏ¸ÆÀ·Ö
-	private Integer pm2_5;// PM2.5ÏêÏ¸ÆÀ·Ö
-	private String suggest;// ¿ÆÑ§½¨Òé
+	private int messageid;
+    private Integer  resultMark;//ç»“æœæ€»åˆ†æ•°
+    private Integer ben;//è‹¯è¯¦ç»†è¯„åˆ†
+    private Integer  pm2_5;//PM2.5è¯¦ç»†è¯„åˆ†
+    private String  suggest;//ç§‘å­¦å»ºè®®
 
-	private Double lng;
-	private Double lat;
-	private String province;
-	private String district;
-	private String city;
-	private String street;
-	private String StreetNum;
+    private Double lng;
+    private Double lat;
+    private String  province;
+    private String  district;
+    private String  city;
+    private String  street;
+    private String  StreetNum;
 
-	private String userId;
-	private String username;
-	private String userImgUrl;
-	private String userphone;
-	private String useremail;
-	private String usersex;
-	private String userage;
+    private String  userId;
+    private String  username;
+    private String userImgUrl;
+    private String  userphone;
+    private String  useremail;
+    private String  usersex;
+    private String  userage;
 
-	private String driverId;// Éè±¸±àºÅ
-
-	public OnekeySharedMessage(Integer resultMark, String userId, Double lat, Double lng) {
-		this.resultMark = resultMark;
-		this.userId = userId;
-		this.lat = lat;
-		this.lng = lng;
+    private String driverId;//è®¾å¤‡ç¼–å·
+    
+    public OnekeySharedMessage(Integer resultMark, String userId, Double lat, Double lng) {
+        this.resultMark = resultMark;
+        this.userId = userId;
+        this.lat = lat;
+        this.lng = lng;
+    }
+    public OnekeySharedMessage() {
+      
+    }
+    
+    public int getMessageid() {
+		return messageid;
 	}
-	
-	
-
+	public void setMessageid(int messageid) {
+		this.messageid = messageid;
+	}
 	public Integer getResultMark() {
-		return resultMark;
-	}
+        return resultMark;
+    }
 
-	public String getMessageId() {
-		return messageId;
-	}
+    public void setResultMark(Integer resultMark) {
+        this.resultMark = resultMark;
+    }
 
-	public void setMessageId(String messageId) {
-		this.messageId = messageId;
-	}
+    public Integer getBen() {
+        return ben;
+    }
 
-	public void setResultMark(Integer resultMark) {
-		this.resultMark = resultMark;
-	}
+    public void setBen(Integer ben) {
+        this.ben = ben;
+    }
 
-	public Integer getBen() {
-		return ben;
-	}
+    public Integer getPm2_5() {
+        return pm2_5;
+    }
 
-	public void setBen(Integer ben) {
-		this.ben = ben;
-	}
+    public void setPm2_5(Integer pm2_5) {
+        this.pm2_5 = pm2_5;
+    }
 
-	public Integer getPm2_5() {
-		return pm2_5;
-	}
+    public String getSuggest() {
+        return suggest;
+    }
 
-	public void setPm2_5(Integer pm2_5) {
-		this.pm2_5 = pm2_5;
-	}
+    public void setSuggest(String suggest) {
+        this.suggest = suggest;
+    }
 
-	public String getSuggest() {
-		return suggest;
-	}
+    public Double getLng() {
+        return lng;
+    }
 
-	public void setSuggest(String suggest) {
-		this.suggest = suggest;
-	}
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
 
-	public Double getLng() {
-		return lng;
-	}
+    public Double getLat() {
+        return lat;
+    }
 
-	public void setLng(Double lng) {
-		this.lng = lng;
-	}
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
 
-	public Double getLat() {
-		return lat;
-	}
+    public String getProvince() {
+        return province;
+    }
 
-	public void setLat(Double lat) {
-		this.lat = lat;
-	}
+    public void setProvince(String province) {
+        this.province = province;
+    }
 
-	public String getProvince() {
-		return province;
-	}
+    public String getDistrict() {
+        return district;
+    }
 
-	public void setProvince(String province) {
-		this.province = province;
-	}
+    public void setDistrict(String district) {
+        this.district = district;
+    }
 
-	public String getDistrict() {
-		return district;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public void setDistrict(String district) {
-		this.district = district;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public String getStreet() {
+        return street;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
-	public String getStreet() {
-		return street;
-	}
+    public String getStreetNum() {
+        return StreetNum;
+    }
 
-	public void setStreet(String street) {
-		this.street = street;
-	}
+    public void setStreetNum(String streetNum) {
+        StreetNum = streetNum;
+    }
 
-	public String getStreetNum() {
-		return StreetNum;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setStreetNum(String streetNum) {
-		StreetNum = streetNum;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUserImgUrl() {
+        return userImgUrl;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUserImgUrl(String userImgUrl) {
+        this.userImgUrl = userImgUrl;
+    }
 
-	public String getUserImgUrl() {
-		return userImgUrl;
-	}
+    public String getUserphone() {
+        return userphone;
+    }
 
-	public void setUserImgUrl(String userImgUrl) {
-		this.userImgUrl = userImgUrl;
-	}
+    public void setUserphone(String userphone) {
+        this.userphone = userphone;
+    }
 
-	public String getUserphone() {
-		return userphone;
-	}
+    public String getUseremail() {
+        return useremail;
+    }
 
-	public void setUserphone(String userphone) {
-		this.userphone = userphone;
-	}
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
+    }
 
-	public String getUseremail() {
-		return useremail;
-	}
+    public String getUsersex() {
+        return usersex;
+    }
 
-	public void setUseremail(String useremail) {
-		this.useremail = useremail;
-	}
+    public void setUsersex(String usersex) {
+        this.usersex = usersex;
+    }
 
-	public String getUsersex() {
-		return usersex;
-	}
+    public String getUserage() {
+        return userage;
+    }
 
-	public void setUsersex(String usersex) {
-		this.usersex = usersex;
-	}
+    public void setUserage(String userage) {
+        this.userage = userage;
+    }
 
-	public String getUserage() {
-		return userage;
-	}
 
-	public void setUserage(String userage) {
-		this.userage = userage;
-	}
+    public String getDriverId() {
+        return driverId;
+    }
 
-	public String getDriverId() {
-		return driverId;
-	}
-
-	public void setDriverId(String driverId) {
-		this.driverId = driverId;
-	}
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
 }

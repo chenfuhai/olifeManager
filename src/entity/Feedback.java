@@ -1,46 +1,45 @@
 package entity;
+
+
 /**
- * ������
- * @author wuguofei
- *
+ * 反馈类 用户反馈的信息存在这里面
+ * Created by chenfuhai on 2016/12/26 0026.
  */
-public class Feedback {
-	private String feedbackId;
-	//�û�����Ϣ
+
+public class Feedback  {
+
+    private int id;
+    //用户的信息
+    private String userId;
     private String userName;
     private String userAge;
     private String userSex;
-    private String feedbackMsg;
-    
-
-	//��ϵ��ʽ
-    private String qq;
+    //反馈的内容
+    private String message;
+    //联系方式
+    private String QQ;
     private String email;
     private String phone;
-    
-    public String getFeedbackId() {
-		return feedbackId;
-	}
-    
-	public void setFeedbackId(String feedbackId) {
-		this.feedbackId = feedbackId;
-	}
-	
-	public String getFeedbackMsg() {
-		return feedbackMsg;
+
+//    public Feedback(String message) {
+//        this.message = message;
+//    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public int getId() {
+		return id;
 	}
 
-	public void setFeedbackMsg(String feedbackMsg) {
-		this.feedbackMsg = feedbackMsg;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getQq() {
-		return qq;
-	}
-
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
+	public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
@@ -64,6 +63,22 @@ public class Feedback {
 
     public void setUserSex(String userSex) {
         this.userSex = userSex;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getQQ() {
+        return QQ;
+    }
+
+    public void setQQ(String QQ) {
+        this.QQ = QQ;
     }
 
     public String getEmail() {

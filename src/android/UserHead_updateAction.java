@@ -1,14 +1,8 @@
 package android;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,12 +12,9 @@ import entity.OnekeySharedDisc;
 import entity.User;
 import utils.DBOpreate;
 import utils.NetUtils;
-/**
- * �û�ע�� ������
- */
-public class User_resisterByPwdAction extends ActionSupport {
-	private String sql;
 
+public class UserHead_updateAction extends ActionSupport{
+	private String sql;
 	public String execute() throws IOException{
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
@@ -31,16 +22,18 @@ public class User_resisterByPwdAction extends ActionSupport {
 		// 声明两个StringBuffer，sb1存列名，sb2存数据
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
+		StringBuffer sb3 = new StringBuffer();
+		StringBuffer sb4 = new StringBuffer();
 		// 对列中的数据进行判断
 		if (user.getId() != 0) {
-			sb1.append("userid").append(",");
-			sb2.append("'" + user.getId() + "'").append(",");
+			sb1.append("userid");
+			sb2.append("'" + user.getId() + "'");
 		}
-		if (user.getPassword() != null) {
-			sb1.append("userpwd");
-			sb2.append("'" + user.getPassword() + "'");
+		if (user.getImgUrl() != null) {
+			sb3.append("imgUrl");
+			sb4.append("'" + user.getImgUrl() + "'");
 		}
-		sql = "insert into ouser(" + sb1.toString() + ") values(" + sb2.toString() + ")";
+		sql = "update ouser set '"+sb3+"'='"+sb4+"' where '"+sb1+"'='"+sb2+"'";
 
 		boolean flag = DBOpreate.execute(sql);
 

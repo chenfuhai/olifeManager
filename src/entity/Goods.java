@@ -1,42 +1,50 @@
 package entity;
 
-import java.io.File;
+
+
 
 /**
- * …Ã∆∑¿‡
- * 
- * @author wuguofei
- *
+ * Created by wuguofei on 2016/12/26.
  */
+
 public class Goods {
-	private String icon;
-	private String goodId;
-	private String goodName;
-	private String desc;
-	public String getIcon() {
-		return icon;
+	private int id;
+    private String iconurl;
+    private String name;
+    private String desc;
+    
+    
+    public int getId() {
+		return id;
 	}
-	public void setIcon(String icon) {
-		this.icon = icon;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getGoodId() {
-		return goodId;
-	}
-	public void setGoodId(String goodId) {
-		this.goodId = goodId;
-	}
-	public String getGoodName() {
-		return goodName;
-	}
-	public void setGoodName(String goodName) {
-		this.goodName = goodName;
-	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+
+	public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getIconUrl() {
+        return iconurl;
+    }
+
+    public void setIconUrl(String iconurl) {
+        this.iconurl = iconurl;
+    }
 
 	
 }

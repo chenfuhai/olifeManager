@@ -1,17 +1,41 @@
 package utils;
 
+import java.util.ArrayList;
+
 /**
- * ´æ·Å²éÑ¯µÄ²ÎÊı ·½±ã·şÎñÆ÷½âÎö ·şÎñÆ÷ºÍ¿Í»§¶Ë¶¼ÓĞÒ»¸öÒ»ÑùµÄÀà È»ºóÓÃGson½«ĞÅÏ¢´«µİÉÏÈ¥
- * ÒÀ¾İÀïÃæµÄĞÅÏ¢À´ÖÆ×÷SQL Óï¾ä
+ * å­˜æ”¾æŸ¥è¯¢çš„å‚æ•° æ–¹ä¾¿æœåŠ¡å™¨è§£æ æœåŠ¡å™¨å’Œå®¢æˆ·ç«¯éƒ½æœ‰ä¸€ä¸ªä¸€æ ·çš„ç±» ç„¶åç”¨Gsonå°†ä¿¡æ¯ä¼ é€’ä¸Šå»
+ * ä¾æ®é‡Œé¢çš„ä¿¡æ¯æ¥åˆ¶ä½œSQL è¯­å¥
  *
- * order Õı¸º¿ªÍ·´ú±íÕıĞò ÄæĞò È»ºóÊÇÊôĞÔÃû
+ * order æ­£è´Ÿå¼€å¤´ä»£è¡¨æ­£åº é€†åº ç„¶åæ˜¯å±æ€§å
  */
 public class Query {
-    private String tableName;
-    private Integer limit;
-    private String order;
-    private String whereEqualTo;
-    private Integer skip;
+    private String tableName;//è¡¨å
+    private Integer limit;//æ‹¿å‡ºæ•°æ®çš„ä¸ªæ•°é™åˆ¶
+    private String order;//æ’åº
+    private String[] whereEqualTo;//æ•°æ®åç§°ä»¥åŠå¯¹åº”å€¼
+    private Integer skip;//è·³è¿‡æ•°æ®çš„ä¸ªæ•°
+    private ArrayList<String[]> WhereLessThanOrEqualTo;
+    private ArrayList<String[]> WhereGreaterThanOrEqualTo;
+
+    public ArrayList<String[]> getWhereLessThanOrEqualTo() {
+        return WhereLessThanOrEqualTo;
+    }
+
+    /**
+     * String[] é‡Œé¢å­˜ä¸€å¯¹å‚æ•° ArrayListæœ‰å¤šä¸ªå‚æ•°å¯¹
+     * @param whereLessThanOrEqualTo
+     */
+    public void setWhereLessThanOrEqualTo(ArrayList<String[]> whereLessThanOrEqualTo) {
+        WhereLessThanOrEqualTo = whereLessThanOrEqualTo;
+    }
+
+    public ArrayList<String[]> getWhereGreaterThanOrEqualTo() {
+        return WhereGreaterThanOrEqualTo;
+    }
+
+    public void setWhereGreaterThanOrEqualTo(ArrayList<String[]> whereGreaterThanOrEqualTo) {
+        WhereGreaterThanOrEqualTo = whereGreaterThanOrEqualTo;
+    }
 
     public String getTableName() {
         return tableName;
@@ -37,11 +61,11 @@ public class Query {
         this.order = order;
     }
 
-    public String getWhereEqualTo() {
+    public String[] getWhereEqualTo() {
         return whereEqualTo;
     }
 
-    public void setWhereEqualTo(String whereEqualTo) {
+    public void setWhereEqualTo(String[] whereEqualTo) {
         this.whereEqualTo = whereEqualTo;
     }
 
@@ -53,11 +77,14 @@ public class Query {
         this.skip = skip;
     }
 
-	@Override
-	public String toString() {
-		return "Query [tableName=" + tableName + ", limit=" + limit + ", order=" + order + ", whereEqualTo="
-				+ whereEqualTo + ", skip=" + skip + "]";
-	}
-    
-    
+    @Override
+    public String toString() {
+        return "Query{" +
+                "tableName='" + tableName + '\'' +
+                ", limit=" + limit +
+                ", order='" + order + '\'' +
+                ", whereEqualTo='" + whereEqualTo + '\'' +
+                ", skip=" + skip +
+                '}';
+    }
 }

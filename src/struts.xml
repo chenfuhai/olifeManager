@@ -6,7 +6,15 @@
 <struts>
 
     <package name="android" namespace="/" extends="json-default">
-    	<action name="Comment_getAction" class="android.Comment_getAction">
+    	<action name="Comment_deleteAction" class="android.Comment_deleteAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="Comment_deleteByIdAction" class="android.Comment_deleteByIdAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="Comment_queryAction" class="android.Comment_queryAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
@@ -14,15 +22,31 @@
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
-        <action name="Goods_getAction" class="android.Goods_getAction">
+        <action name="FeedBack_queryAction" class="android.FeedBack_queryAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
-        <action name="ShareInformation_getAction" class="android.ShareInformation_getAction">
+        <action name="FeedBack_submitAction" class="android.FeedBack_submitAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
-        <action name="TestResult_getAction" class="android.TestResult_getAction">
+        <action name="Goods_queryAction" class="android.Goods_queryAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="ShareMessage_queryByIdAction" class="android.ShareMessage_queryByIdAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="ShareMessage_saveAction" class="android.ShareMessage_saveAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="TestLastResult_queryByIdAction" class="android.TestLastResult_queryByIdAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="TestResult_queryByIdAction" class="android.TestResult_queryByIdAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
@@ -30,15 +54,27 @@
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
+        <action name="User_changePwdAction" class="android.User_changePwdAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
         <action name="User_loginByPwdAction" class="android.User_loginByPwdAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
-        <action name="User_manageAction" class="android.User_manageAction">
+        <action name="User_resisterByPwdAction" class="android.User_resisterByPwdAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
-        <action name="User_resisterByPwdAction" class="android.User_resisterByPwdAction">
+        <action name="User_updateAction" class="android.User_updateAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="UserHead_updateAction" class="android.UserHead_updateAction">
+            <result type="json"/>
+            <!--返回值类型设置为json,不设置返回页面-->
+        </action>
+        <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>

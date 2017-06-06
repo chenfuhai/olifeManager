@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="D:/apache-tomcat-8.0.41/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="D:/apache-tomcat-8.0.41/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="D:/apache-tomcat-8.0.41/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/wuguofei/git/onmyoji/WebContent/WEB-INF/lib/gson-2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

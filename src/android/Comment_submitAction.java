@@ -6,64 +6,70 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
+import entity.OnekeySharedDisc;
 import utils.DBOpreate;
+import utils.NetUtils;
+import utils.Query;
 
 /**
- * Ìá½»ÆÀÂÛ ĞèÍêÉÆ
+ * 
  */
-public class Comment_submitAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
-	HttpServletRequest request;
-	HttpServletResponse response;
-	private String userId;
-	private String message;
+public class Comment_submitAction extends ActionSupport {
 	private String sql;
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	@Override
-	public void setServletResponse(HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		this.response = response;
-	}
-
-	@Override
-	public void setServletRequest(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		this.request = request;
-	}
-
 	public String execute() throws IOException {
-		
-		// È»ºó½øĞĞ²Ù×÷
-		sql = "";
-		
+		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		OnekeySharedDisc disc = gson.fromJson(msg, OnekeySharedDisc.class);
+		// å£°æ˜ä¸¤ä¸ªStringBufferï¼Œsb1å­˜åˆ—åï¼Œsb2å­˜æ•°æ®
+		StringBuffer sb1 = new StringBuffer();
+		StringBuffer sb2 = new StringBuffer();
+		// å¯¹åˆ—ä¸­çš„æ•°æ®è¿›è¡Œåˆ¤æ–­
+		if (disc.getSharedMessageId() != null) {
+			sb1.append("sharedMessageId").append(",");
+			sb2.append("'" + disc.getSharedMessageId() + "'").append(",");
+		}
+		if (disc.getUserId() != null) {
+			sb1.append("userid").append(",");
+			sb2.append("'" + disc.getUserId() + "'").append(",");
+		}
+		if (disc.getUserImgUrl() != null) {
+			sb1.append("userimgUrl").append(",");
+			sb2.append("'" + disc.getUserImgUrl() + "'").append(",");
+		}
+		if (disc.getUsername() != null) {
+			sb1.append("username").append(",");
+			sb2.append("'" + disc.getUsername() + "'").append(",");
+		}
+		if (disc.getUsersex() != null) {
+			sb1.append("usersex").append(",");
+			sb2.append("'" + disc.getUsersex() + "'").append(",");
+		}
+		if (disc.getUserage() != null) {
+			sb1.append("userage").append(",");
+			sb2.append("'" + disc.getUserage() + "'").append(",");
+		}
+		if (disc.getMessage() != null) {
+			sb1.append("discmessage");
+			sb2.append("'" + disc.getMessage() + "'");
+		}
+
+		sql = "insert into onekeySharedDisc(" + sb1.toString() + ") values(" + sb2.toString() + ")";
+
 		boolean flag = DBOpreate.execute(sql);
-		this.response.setContentType("text/html");
-		this.response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
+
 		if (flag == true) {
-			out.print("ÆÀÂÛ³É¹¦");
+			ServletActionContext.getResponse().getWriter().println("success");
 		} else {
-			out.print("ÆÀÂÛÊ§°Ü");
+			ServletActionContext.getResponse().getWriter().println("failed");
 		}
 		return null;
 

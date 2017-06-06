@@ -1,33 +1,40 @@
 package entity;
+
+
+
 /**
- * ÆÀÂÛÀà
- * @author wuguofei
- *
+ * è¯„è®ºç±»
+ * Created by chenfuhai on 2016/12/16 0016.
  */
-public class OnekeySharedDisc {
-	private String discId;
-	private String sharedMessageId; //·ÖÏí½á¹ûID
-    private String userId;
+
+public class OnekeySharedDisc  {
+
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    private String sharedMessageId; //åˆ†äº«ç»“æœID
+    private String  userId;
     private String userImgUrl;
-    private String username;
-    private Boolean usersex;
-    private String userage;   
-    private String message;//ÆÀÂÛÄÚÈİ
-    
-    public String getDiscId() {
-		return discId;
-	}
+    private String  username;
+    private Boolean  usersex;
+    private String  userage;
 
-	public void setDiscId(String discId) {
-		this.discId = discId;
-	}
-
-	
+    private String message;//è¯„è®ºå†…å®¹
 
 
     public OnekeySharedDisc(String sharedMessageId, String userId) {
         this.sharedMessageId = sharedMessageId;
         this.userId = userId;
+    }
+    public OnekeySharedDisc() {
+       
     }
 
     public String getSharedMessageId() {
@@ -85,4 +92,5 @@ public class OnekeySharedDisc {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }
