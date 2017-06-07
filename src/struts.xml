@@ -71,6 +71,12 @@
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="UserHead_updateAction" class="android.UserHead_updateAction">
+        	<interceptor-ref name="fileUpload">
+  				<param name="maximumSize">524288000</param>
+  			</interceptor-ref>
+  			<interceptor-ref name="defaultStack"/>
+  			
+  			<param name="savePath">/upload</param>
             <result type="json"/>
             <!--返回值类型设置为json,不设置返回页面-->
         </action>

@@ -31,6 +31,8 @@ public class User_updateAction extends ActionSupport{
 		StringBuffer sb10 = new StringBuffer();
 		StringBuffer sb11 = new StringBuffer();
 		StringBuffer sb12 = new StringBuffer();
+		StringBuffer sb13 = new StringBuffer();
+		StringBuffer sb14= new StringBuffer();
 		// 对列中的数据进行判断
 		if (user.getId() != 0) {
 			sb1.append("userid");
@@ -48,6 +50,7 @@ public class User_updateAction extends ActionSupport{
 			sb7.append("sex");
 			sb8.append("'" + user.getSex() + "'");
 		}
+		
 		if (user.getBrithday() != null) {
 			sb9.append("brithday");
 			sb10.append("'" + user.getBrithday() + "'");
@@ -56,7 +59,11 @@ public class User_updateAction extends ActionSupport{
 			sb11.append("email");
 			sb12.append("'" + user.getEmail() + "'");
 		}
-		sql = "update ouser set '"+sb3+"'='"+sb4+"'and '"+sb5+"'='"+sb6+"'and '"+sb7+"'='"+sb8+"'and '"+sb9+"'='"+sb10+"'and '"+sb11+"'='"+sb12+"' where '"+sb1+"'='"+sb2+"'";
+		if (user.getImgUrl() != null) {
+			sb13.append("imgUrl");
+			sb14.append("'" + user.getImgUrl() + "'");
+		}
+		sql = "update ouser set '"+sb3+"'='"+sb4+"'and '"+sb5+"'='"+sb6+"'and '"+sb7+"'='"+sb8+"'and '"+sb9+"'='"+sb10+"'and '"+sb11+"'='"+sb12+"'and '"+sb13+"'='"+sb14+"' where '"+sb1+"'='"+sb2+"'";
 
 		boolean flag = DBOpreate.execute(sql);
 

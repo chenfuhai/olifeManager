@@ -1,47 +1,102 @@
 package android;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
-import entity.OnekeySharedDisc;
-import entity.User;
-import utils.DBOpreate;
-import utils.NetUtils;
-
 public class UserHead_updateAction extends ActionSupport{
+private String savePath;
+	
+	private File img;
+	
+	private String imgContentType;
+	
+	private String imgFileName;
+	
+	private String orderId;
+
+
+	public String getSavePath() {
+		return ServletActionContext.getServletContext().getRealPath(savePath);
+	}
+
+	public File getImg() {
+		return img;
+	}
+
+	public String getImgFileName() {
+		return imgFileName;
+	}
+
+	public void setSavePath(String value) {
+		this.savePath = value;
+	}
+
+	public void setImgFileName(String imgFileName) {
+		this.imgFileName = imgFileName;
+	}
+
+	public void setImg(File img) {
+		this.img = img;
+	}
+
+	public String getImgContentType() {
+		return imgContentType;
+	}
+
+	public void setImgContentType(String imgContentType) {
+		this.imgContentType = imgContentType;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 	private String sql;
 	public String execute() throws IOException{
-		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
-		Gson gson = new GsonBuilder().serializeNulls().create();
-		User user = gson.fromJson(msg, User.class);
-		// 声明两个StringBuffer，sb1存列名，sb2存数据
-		StringBuffer sb1 = new StringBuffer();
-		StringBuffer sb2 = new StringBuffer();
-		StringBuffer sb3 = new StringBuffer();
-		StringBuffer sb4 = new StringBuffer();
-		// 对列中的数据进行判断
-		if (user.getId() != 0) {
-			sb1.append("userid");
-			sb2.append("'" + user.getId() + "'");
-		}
-		if (user.getImgUrl() != null) {
-			sb3.append("imgUrl");
-			sb4.append("'" + user.getImgUrl() + "'");
-		}
-		sql = "update ouser set '"+sb3+"'='"+sb4+"' where '"+sb1+"'='"+sb2+"'";
-
-		boolean flag = DBOpreate.execute(sql);
-
-		if (flag == true) {
-			ServletActionContext.getResponse().getWriter().println("success");
-		} else {
-			ServletActionContext.getResponse().getWriter().println("failed");
-		}
+		String ct  =  ServletActionContext.getRequest().getHeader("Content-Type");
+		System.out.println("Content-Type="+ct);
+		String result = "unknow error";
+		System.out.println("orderId="+getOrderId());
+		PrintWriter out = ServletActionContext.getResponse().getWriter();
+		System.out.println(123);
+			FileOutputStream fos = null;
+			FileInputStream fis = null;
+			try {
+				
+				System.out.println(getSavePath() + "\\"+ getImgFileName());
+				File f1=new File(getSavePath()) ;
+				f1.mkdirs();
+				
+				fos = new FileOutputStream(getSavePath() + "\\"
+						+getImgFileName());
+				fis = new FileInputStream(getImg());
+				byte[] buffer = new byte[1024];
+				int len = 0;
+				while ((len = fis.read(buffer)) > 0) {
+					fos.write(buffer, 0, len);
+				}
+				result = savePath+"/"+getImgFileName();
+			} catch (Exception e) {
+				result = "upload file failed ! ";
+				e.printStackTrace();
+			} finally {
+				fos.close();
+				fis.close();
+			}
+			System.out.println(123);
+			
+		out.print(result);
+		out.close();
 		return null;
 	}
 }
