@@ -27,11 +27,15 @@ import utils.Query;
 public class User_loginByPwdAction extends ActionSupport{
 	private String sql;
 	public String execute() throws IOException{
+		System.out.println(123);
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		System.out.println(msg);
 		Gson gson = new GsonBuilder().create();
 		Query query = gson.fromJson(msg, Query.class);
+		System.out.println(query.toString());
 		String[] a = query.getWhereEqualTo();
 		sql = "select * from '" + query.getTableName() + "' where '" + a[0] + "' = '" + a[1] + "' and '" + a[2] + "' = '" + a[3] + "'";
+		System.out.println(1234);
 		ResultSet result = DBOpreate.executeQuery(sql);	
 		if (result != null) {
 			User user = new User();
