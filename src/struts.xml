@@ -5,69 +5,70 @@
 
 <struts>
 
-    <package name="android" namespace="/" extends="json-default">
+  <!-- 服务器指定一个临时的路径，这里使用了绝对路径，大家根据自己的Tomcat路径自行设置，否则会上传失败 -->
+	<constant name="struts.multipart.saveDir" value="D:\pro\apache-tomcat-8.5.15/temp"/>
+	<constant name="struts.multipart.maxSize" value="30000000"></constant>
+	
+    <package name="default" namespace="/" extends="struts-default">
     	<action name="Comment_deleteAction" class="android.Comment_deleteAction">
-            <result type="json"/>
-            <!--返回值类型设置为json,不设置返回页面-->
+           
         </action>
         <action name="Comment_deleteByIdAction" class="android.Comment_deleteByIdAction">
-            <result type="json"/>
-            <!--返回值类型设置为json,不设置返回页面-->
+            
         </action>
         <action name="Comment_queryAction" class="android.Comment_queryAction">
-            <result type="json"/>
-            <!--返回值类型设置为json,不设置返回页面-->
+            
         </action>
         <action name="Comment_submitAction" class="android.Comment_submitAction">
-            <result type="json"/>
+            
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="FeedBack_queryAction" class="android.FeedBack_queryAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="FeedBack_submitAction" class="android.FeedBack_submitAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="Goods_queryAction" class="android.Goods_queryAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="ShareMessage_queryByIdAction" class="android.ShareMessage_queryByIdAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="ShareMessage_saveAction" class="android.ShareMessage_saveAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="TestLastResult_queryByIdAction" class="android.TestLastResult_queryByIdAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="TestResult_queryByIdAction" class="android.TestResult_queryByIdAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="TestResult_saveAction" class="android.TestResult_saveAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="User_changePwdAction" class="android.User_changePwdAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="User_loginByPwdAction" class="android.User_loginByPwdAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="User_resisterByPwdAction" class="android.User_resisterByPwdAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="User_updateAction" class="android.User_updateAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="UserHead_updateAction" class="android.UserHead_updateAction">
@@ -77,11 +78,11 @@
   			<interceptor-ref name="defaultStack"/>
   			
   			<param name="savePath">/upload</param>
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
         <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">
-            <result type="json"/>
+             
             <!--返回值类型设置为json,不设置返回页面-->
         </action>
     </package>
