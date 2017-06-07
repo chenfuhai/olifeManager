@@ -17,6 +17,7 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 import entity.OnekeySharedDisc;
+import entity.User;
 import utils.DBOpreate;
 import utils.NetUtils;
 import utils.Query;
@@ -31,9 +32,27 @@ public class User_loginByPwdAction extends ActionSupport{
 		Query query = gson.fromJson(msg, Query.class);
 		String[] a = query.getWhereEqualTo();
 		sql = "select * from '" + query.getTableName() + "' where '" + a[0] + "' = '" + a[1] + "' and '" + a[2] + "' = '" + a[3] + "'";
-		boolean flag = DBOpreate.execute(sql);
-		if (flag == true) {
-			ServletActionContext.getResponse().getWriter().println("success");
+		ResultSet result = DBOpreate.executeQuery(sql);	
+		if (result != null) {
+			User user = new User();
+			try {
+				user.setAge(result.getString(""));
+				user.setBrithday(result.getString("brithday"));
+				user.setEmail(result.getString("email"));
+				user.setId(Integer.parseInt(result.getString("id")));user.setImgUrl(result.getString("imgUrl"));
+				user.setPassword(result.getString("userpwd"));
+				user.setPhone(result.getString("phone"));
+				user.setSex(result.getString("sex"));
+				user.setUsername(result.getString("username"));
+				String data = gson.toJson(user);
+				ServletActionContext.getResponse().getWriter().println(data);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else{
 			ServletActionContext.getResponse().getWriter().println("failed");
 		}
