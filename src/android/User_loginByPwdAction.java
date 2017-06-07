@@ -36,7 +36,7 @@ public class User_loginByPwdAction extends ActionSupport{
 		if (result != null) {
 			User user = new User();
 			try {
-				user.setAge(result.getString(""));
+				user.setAge(result.getString("userage"));
 				user.setBrithday(result.getString("brithday"));
 				user.setEmail(result.getString("email"));
 				user.setId(Integer.parseInt(result.getString("id")));user.setImgUrl(result.getString("imgUrl"));
