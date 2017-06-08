@@ -29,7 +29,7 @@ public class ShareMessage_queryByLaInAction extends ActionSupport{
 		String[] a2 = (String[]) a.get(1);
 		String[] b1 = (String[]) b.get(0);
 		String[] b2 = (String[]) b.get(1);
-		sql = "select * from '" + query.getTableName() + "' where '"+a1[0]+"'<='"+a1[1]+"' and '"+a2[0]+"'<='"+a2[1]+"' and '"+b1[0]+"'>='"+b1[1]+"' and '"+b2[0]+"'>='"+b2[1]+"'";
+		sql = "select * from onekeySharedMessage where '"+a1[0]+"'<='"+a1[1]+"' and '"+a2[0]+"'<='"+a2[1]+"' and '"+b1[0]+"'>='"+b1[1]+"' and '"+b2[0]+"'>='"+b2[1]+"'";
 		ResultSet result = DBOpreate.executeQuery(sql);
 		if (result != null) {
 			OnekeySharedMessage message = new OnekeySharedMessage();

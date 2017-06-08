@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import entity.Goods;
 import net.sf.json.JSONObject;
 import utils.DBOpreate;
+import utils.JudgeSQL;
 import utils.NetUtils;
 import utils.Query;
 /**
@@ -38,7 +39,7 @@ public class Goods_queryAction extends ActionSupport {
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		//以gson形式将数据中的条件取出
 		Query query = gson.fromJson(msg, Query.class);
-		sql = "select * from '"+query.getTableName()+"'";
+		sql = JudgeSQL.judgeSQL("goods",null,null, query.getLimit(), query.getOrder(), query.getSkip());
 		// 连接数据库并进行查找操作，将返回的数据流存放
 		ResultSet result = DBOpreate.executeQuery(sql);
 		if (result != null) {

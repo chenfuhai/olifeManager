@@ -20,6 +20,7 @@ import entity.Feedback;
 import entity.OnekeySharedDisc;
 import net.sf.json.JSONObject;
 import utils.DBOpreate;
+import utils.JudgeSQL;
 import utils.NetUtils;
 import utils.Query;
 
@@ -34,7 +35,8 @@ public class Comment_queryAction extends ActionSupport {
 		Gson gson = new GsonBuilder().create();
 		Query query = gson.fromJson(msg, Query.class);
 		String[] a = query.getWhereEqualTo();
-		sql = "select * from '" + query.getTableName() + "' where '" + a[0] + "' = '" + a[1] + "'";
+		sql = JudgeSQL.judgeSQL("onekeySharedDisc",a[0],a[1], query.getLimit(), query.getOrder(), query.getSkip());
+		sql = "select * from onekeySharedDisc where '" + a[0] + "' = '" + a[1] + "'";
 		ResultSet result = DBOpreate.executeQuery(sql);
 		if (result != null) {
 			OnekeySharedDisc disc = new OnekeySharedDisc();

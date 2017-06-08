@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * order 正负开头代表正序 逆序 然后是属性名
  */
 public class Query {
-    private String tableName;//表名
+    
     private Integer limit;//拿出数据的个数限制
     private String order;//排序
     private String[] whereEqualTo;//数据名称以及对应值
@@ -37,13 +37,7 @@ public class Query {
         WhereGreaterThanOrEqualTo = whereGreaterThanOrEqualTo;
     }
 
-    public String getTableName() {
-        return tableName;
-    }
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
+    
 
     public Integer getLimit() {
         return limit;
@@ -80,8 +74,7 @@ public class Query {
     @Override
     public String toString() {
         return "Query{" +
-                "tableName='" + tableName + '\'' +
-                ", limit=" + limit +
+                "limit=" + limit +
                 ", order='" + order + '\'' +
                 ", whereEqualTo='" + whereEqualTo + '\'' +
                 ", skip=" + skip +

@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import entity.OnekeySharedMessage;
 import utils.DBOpreate;
+import utils.JudgeSQL;
 import utils.NetUtils;
 import utils.Query;
 
@@ -23,7 +24,8 @@ public class ShareMessage_queryByIdAction extends ActionSupport{
 		Gson gson = new GsonBuilder().create();	
 		Query query = gson.fromJson(msg, Query.class);
 		String[] a = query.getWhereEqualTo();
-		sql = "select * from '" + query.getTableName() + "' where '"+a[0]+"'='"+a[1]+"'";
+		sql = JudgeSQL.judgeSQL("onekeySharedMessage",a[0],a[1], query.getLimit(), query.getOrder(), query.getSkip());
+		//sql = "select * from onekeySharedMessage where '"+a[0]+"'='"+a[1]+"'";
 		ResultSet result = DBOpreate.executeQuery(sql);
 		if (result != null) {
 			OnekeySharedMessage message = new OnekeySharedMessage();

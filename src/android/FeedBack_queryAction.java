@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import entity.Feedback;
 import utils.DBOpreate;
+import utils.JudgeSQL;
 import utils.NetUtils;
 import utils.Query;
 
@@ -21,8 +22,7 @@ public class FeedBack_queryAction extends ActionSupport{
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().create();
 		Query query = gson.fromJson(msg,Query.class);
-		String[] a = query.getWhereEqualTo();
-		sql="select * from '"+query.getTableName()+"' where '"+a[0]+"' = '"+a[1]+"'";
+		sql = JudgeSQL.judgeSQL("feedback",null,null,query.getLimit(), query.getOrder(), query.getSkip());
 		ResultSet result = DBOpreate.executeQuery(sql);
 		if(result!=null){
 			Feedback feedback = new Feedback();
