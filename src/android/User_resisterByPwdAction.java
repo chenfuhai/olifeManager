@@ -35,12 +35,36 @@ public class User_resisterByPwdAction extends ActionSupport {
 		StringBuffer sb2 = new StringBuffer();
 		// 对列中的数据进行判断
 		if (user.getId() != 0) {
-			sb1.append("userid").append(",");
+			sb1.append("username").append(",");
 			sb2.append("'" + user.getId() + "'").append(",");
 		}
 		if (user.getPassword() != null) {
-			sb1.append("userpwd");
-			sb2.append("'" + user.getPassword() + "'");
+			sb1.append("userpwd").append(",");
+			sb2.append("'" + user.getPassword() + "'").append(",");
+		}
+		if (user.getSex() != null) {
+			sb1.append("sex").append(",");
+			sb2.append("'" + user.getSex() + "'").append(",");
+		}
+		if (user.getImgUrl() != null) {
+			sb1.append("imgUrl").append(",");
+			sb2.append("'" + user.getImgUrl() + "'").append(",");
+		}
+		if (user.getBrithday() != null) {
+			sb1.append("brithday").append(",");
+			sb2.append("'" + user.getBrithday() + "'").append(",");
+		}
+		if (user.getEmail() != null) {
+			sb1.append("email").append(",");
+			sb2.append("'" + user.getEmail() + "'").append(",");
+		}
+		if (user.getPhone() != null) {
+			sb1.append("phone").append(",");
+			sb2.append("'" + user.getPhone() + "'").append(",");
+		}
+		if (user.getAge() != null) {
+			sb1.append("userage");
+			sb2.append("'" + user.getAge() + "'");
 		}
 		sql = "insert into ouser(" + sb1.toString() + ") values(" + sb2.toString() + ")";
 
