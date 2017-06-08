@@ -1,11 +1,11 @@
 package utils;
 /**
- * ÍøÂç·şÎñÆ÷IPÅäÖÃ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½ï¿½ï¿½
  * @author chenfuhai
  *
  */
 public class NetConfig {
-	public static String IP="10.100.4.4";
+	public static String IP="127.0.0.1";
 	public static String PORT="1433";
 	public static String DateBaseName="olife";
 	public static String USERNAME="sa";
