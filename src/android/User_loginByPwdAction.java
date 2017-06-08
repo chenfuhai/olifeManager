@@ -21,33 +21,39 @@ import entity.User;
 import utils.DBOpreate;
 import utils.NetUtils;
 import utils.Query;
+
 /**
  * �û���¼ ������
  */
-public class User_loginByPwdAction extends ActionSupport{
+public class User_loginByPwdAction extends ActionSupport {
 	private String sql;
-	public String execute() throws IOException, SQLException{
+
+	public String execute() throws IOException, SQLException {
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().create();
-		System.out.println(msg);
+
 		User user = gson.fromJson(msg, User.class);
-		System.out.println(user.toString());
-		if(user.getUsername()!=null){
-			sql="select * from ouser where username = '"+user.getUsername()+"' or email='"+user.getUsername()+"'or phone='"+user.getUsername()+"'";
-			System.out.println(sql);
-			ResultSet result = DBOpreate.executeQuery(sql);	
-			if(user.getPassword().equals(result.getString("userpwd"))){
-				try {		
-					user.setAge(result.getString("userage"));
+
+		if (user.getUsername() != null) {
+			sql = "select * from ouser where username = '" + user.getUsername() + "' or email='" + user.getUsername()
+					+ "'or phone='" + user.getUsername() + "'";
+			
+			ResultSet result = DBOpreate.executeQuery(sql);
+			result.next();
+			if (user.getPassword().equals(result.getString("userpwd"))) {
+				try {
+					user.setAge(result.getString("age"));
 					user.setBrithday(result.getString("brithday"));
 					user.setEmail(result.getString("email"));
-					user.setId(Integer.parseInt(result.getString("id")));user.setImgUrl(result.getString("imgUrl"));
+					user.setId(Integer.parseInt(result.getString("id")));
+					user.setImgUrl(result.getString("imgUrl"));
 					user.setPassword(result.getString("userpwd"));
 					user.setPhone(result.getString("phone"));
 					user.setSex(result.getString("sex"));
 					user.setUsername(result.getString("username"));
 					String data = gson.toJson(user);
 					ServletActionContext.getResponse().getWriter().println(data);
+					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -55,10 +61,10 @@ public class User_loginByPwdAction extends ActionSupport{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				}else{
-					ServletActionContext.getResponse().getWriter().println("failed");
-				}
-			
+			} else {
+				ServletActionContext.getResponse().getWriter().println("failed");
+			}
+
 		}
 		return null;
 	}

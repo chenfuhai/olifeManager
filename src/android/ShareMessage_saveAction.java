@@ -99,8 +99,9 @@ public class ShareMessage_saveAction extends ActionSupport{
 			sb1.append("driverId").append(",");
 			sb2.append("'" + message.getDriverId() + "'").append(",");
 		}
-		
-		sql = "insert into onekeySharedDisc(" + sb1.toString() + ") values(" + sb2.toString() + ")";	
+		String result1 = sb1.toString().substring(0, sb1.toString().length()-1);
+		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
+		sql = "insert into onekeySharedMessage(" + result1 + ") values(" + result2 + ")";	
 		boolean flag = DBOpreate.execute(sql);
 		
 		if (flag == true) {

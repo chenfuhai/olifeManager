@@ -19,52 +19,57 @@ public class User_updateAction extends ActionSupport{
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		User user = gson.fromJson(msg, User.class);
 		// 声明两个StringBuffer，sb1存列名，sb2存数据
-		StringBuffer sb1 = new StringBuffer();
-		StringBuffer sb2 = new StringBuffer();
-		StringBuffer sb3 = new StringBuffer();
-		StringBuffer sb4 = new StringBuffer();
-		StringBuffer sb5 = new StringBuffer();
-		StringBuffer sb6 = new StringBuffer();
-		StringBuffer sb7 = new StringBuffer();
-		StringBuffer sb8 = new StringBuffer();
-		StringBuffer sb9 = new StringBuffer();
-		StringBuffer sb10 = new StringBuffer();
-		StringBuffer sb11 = new StringBuffer();
-		StringBuffer sb12 = new StringBuffer();
-		StringBuffer sb13 = new StringBuffer();
-		StringBuffer sb14= new StringBuffer();
+		
+		String sb3 = new String();
+		String sb4 = new String();
+		String sb5 = new String();
+		String sb6 = new String();
+		String sb7 = new String();
+		String sb8 = new String();
+		String sb9 = new String();
+		String sb10 = new String();
+		String sb11 = new String();
+		String sb12 = new String();
+		String sb13 = new String();
+		String sb14= new String();
+		String sb15 = new String();
+		String sb16= new String();
 		// 对列中的数据进行判断
-		if (user.getId() != 0) {
-			sb1.append("userid");
-			sb2.append("'" + user.getId() + "'");
-		}
+		
 		if (user.getUsername() != null) {
-			sb3.append("username");
-			sb4.append("'" + user.getUsername() + "'");
+			sb3="username=";
+			sb4="'" + user.getUsername() + "',";
 		}
 		if (user.getPhone() != null) {
-			sb5.append("phone");
-			sb6.append("'" + user.getPhone() + "'");
+			sb5="phone=";
+			sb6="'" + user.getPhone() + "',";
 		}
 		if (user.getSex() != null) {
-			sb7.append("sex");
-			sb8.append("'" + user.getSex() + "'");
+			sb7="sex=";
+			sb8="'" + user.getSex() + "',";
 		}
 		
 		if (user.getBrithday() != null) {
-			sb9.append("brithday");
-			sb10.append("'" + user.getBrithday() + "'");
+			sb9="brithday=";
+			sb10="'" + user.getBrithday() + "',";
 		}
 		if (user.getEmail() != null) {
-			sb11.append("email");
-			sb12.append("'" + user.getEmail() + "'");
+			sb11="email=";
+			sb12="'" + user.getEmail() + "',";
 		}
 		if (user.getImgUrl() != null) {
-			sb13.append("imgUrl");
-			sb14.append("'" + user.getImgUrl() + "'");
+			sb13="imgUrl=";
+			sb14="'" + user.getImgUrl() + "',";
 		}
-		sql = "update ouser set '"+sb3+"'='"+sb4+"'and '"+sb5+"'='"+sb6+"'and '"+sb7+"'='"+sb8+"'and '"+sb9+"'='"+sb10+"'and '"+sb11+"'='"+sb12+"'and '"+sb13+"'='"+sb14+"' where '"+sb1+"'='"+sb2+"'";
-
+		if(user.getAge()!=null){
+			sb15="age=";
+			sb16="'" + user.getAge() + "',";
+		}
+		String sresult = sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+""+sb9+""+sb10+""+sb11+""+sb12+""+sb13+""+sb14+""+sb15+""+sb16;
+		String result = sresult.substring(0, sresult.length()-1);
+	
+		sql = "update ouser set "+result+" where id = "+user.getId();
+		
 		boolean flag = DBOpreate.execute(sql);
 
 		if (flag == true) {

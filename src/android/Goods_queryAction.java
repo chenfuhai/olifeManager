@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,27 +40,27 @@ public class Goods_queryAction extends ActionSupport {
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		//以gson形式将数据中的条件取出
 		Query query = gson.fromJson(msg, Query.class);
-		sql = JudgeSQL.judgeSQL("goods",null,null, query.getLimit(), query.getOrder(), query.getSkip());
+		sql = JudgeSQL.jSQL("goods",null,null, query.getLimit(), query.getOrder(), query.getSkip());
 		// 连接数据库并进行查找操作，将返回的数据流存放
 		System.out.println("1"+sql);
 		ResultSet result = DBOpreate.executeQuery(sql);
-		if (result != null) {
-			//构造的Goods类
-			Goods goods = new Goods();
-			try {	
-				goods.setId(Integer.parseInt(result.getString("id")));
-				goods.setDesc(result.getString("gooddesc"));
-				goods.setName(result.getString("goodname"));
-				goods.setIconUrl(result.getString("iconUrl"));
-				String data = gson.toJson(goods);
-				ServletActionContext.getResponse().getWriter().println(data);
-				System.out.println("商品信息获取成功");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		ArrayList<Goods> goods = new ArrayList<>();
+		try {
+			while(result.next()){
+				Goods good = new Goods();
+				good.setId(Integer.parseInt(result.getString("id")));
+				good.setDesc(result.getString("gooddesc"));
+				good.setName(result.getString("goodname"));
+				good.setIconUrl(result.getString("iconUrl"));
+				goods.add(good);
 			}
-			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		String data = gson.toJson(goods);
+		ServletActionContext.getResponse().getWriter().println(data);
+		
 		return null;
 	}
 

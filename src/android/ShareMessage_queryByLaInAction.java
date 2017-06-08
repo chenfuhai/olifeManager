@@ -3,6 +3,7 @@ package android;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
@@ -17,9 +18,10 @@ import utils.DBOpreate;
 import utils.NetUtils;
 import utils.Query;
 
-public class ShareMessage_queryByLaInAction extends ActionSupport{
+public class ShareMessage_queryByLaInAction extends ActionSupport {
 	private String sql;
-	public String execute() throws IOException{
+
+	public String execute() throws IOException {
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().create();
 		Query query = gson.fromJson(msg, Query.class);
@@ -29,14 +31,18 @@ public class ShareMessage_queryByLaInAction extends ActionSupport{
 		String[] a2 = (String[]) a.get(1);
 		String[] b1 = (String[]) b.get(0);
 		String[] b2 = (String[]) b.get(1);
-		sql = "select * from onekeySharedMessage where '"+a1[0]+"'<='"+a1[1]+"' and '"+a2[0]+"'<='"+a2[1]+"' and '"+b1[0]+"'>='"+b1[1]+"' and '"+b2[0]+"'>='"+b2[1]+"'";
-		ResultSet result = DBOpreate.executeQuery(sql);
-		if (result != null) {
-			OnekeySharedMessage message = new OnekeySharedMessage();
-			try {
+		sql = "select * from onekeySharedMessage where '" + a1[0] + "'<='" + a1[1] + "' and '" + a2[0] + "'<='" + a2[1]
+				+ "' and '" + b1[0] + "'>='" + b1[1] + "' and '" + b2[0] + "'>='" + b2[1] + "'";
+		ArrayList<OnekeySharedMessage> lists = new ArrayList<>();
+		try {
+			ResultSet result = DBOpreate.executeQuery(sql);
+			while (result.next()) {
+
+				OnekeySharedMessage message = new OnekeySharedMessage();
+
 				message.setMessageid(Integer.parseInt(result.getString("messageid")));
-				message.setUserId(result.getString("userid"));
-				message.setResultMark(Integer.parseInt(result.getString("resultMark")));	
+				message.setUserId(result.getInt("userid")+"");
+				message.setResultMark(Integer.parseInt(result.getString("resultMark")));
 				message.setBen(Integer.parseInt(result.getString("ben")));
 				message.setPm2_5(Integer.parseInt(result.getString("pm2_5")));
 				message.setSuggest(result.getString("suggest"));
@@ -54,14 +60,15 @@ public class ShareMessage_queryByLaInAction extends ActionSupport{
 				message.setUsersex(result.getString("usersex"));
 				message.setUserage(result.getString("userage"));
 				message.setDriverId(result.getString("driverId"));
-
-				String data = gson.toJson(message);
-				ServletActionContext.getResponse().getWriter().println(data);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				lists.add(message);
 			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		String data = gson.toJson(lists);
+		ServletActionContext.getResponse().getWriter().println(data);
 		return null;
 	}
 }

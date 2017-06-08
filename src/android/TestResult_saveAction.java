@@ -80,11 +80,13 @@ public class TestResult_saveAction extends ActionSupport{
 			sb2.append("'" + record.getStreetNum() + "'").append(",");
 		}
 		if (record.getDriverId() != null) {
-			sb1.append("driverId");
-			sb2.append("'" + record.getDriverId() + "'");
+			sb1.append("driverId").append(",");
+			sb2.append("'" + record.getDriverId() + "'").append(",");
 		}
-
-		sql = "insert into onekeySharedDisc(" + sb1.toString() + ") values(" + sb2.toString() + ")";	
+		String result1 = sb1.toString().substring(0, sb1.toString().length()-1);
+		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
+		sql = "insert into onekeyResultRecord(" + result1 + ") values(" + result2 + ")";	
+		System.out.println(sql);
 		boolean flag = DBOpreate.execute(sql);
 		
 		if (flag == true) {

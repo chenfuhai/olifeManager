@@ -1,42 +1,53 @@
 package android;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
-import entity.OnekeySharedDisc;
 import entity.User;
 import utils.DBOpreate;
 import utils.NetUtils;
+
 /**
  * �û�ע�� ������
  */
 public class User_resisterByPwdAction extends ActionSupport {
 	private String sql;
 
-	public String execute() throws IOException{
+	public String execute() throws IOException {
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		User user = gson.fromJson(msg, User.class);
-		System.out.println(msg);
-		System.out.println(user.toString());
+
+		sql = "select * from ouser where username = '" + user.getUsername() + "' or email='" + user.getUsername()
+				+ "'or phone='" + user.getUsername() + "'";
+
+		ResultSet result = DBOpreate.executeQuery(sql);
+
+		try {
+			if (result.next()) {
+				// 有结果 说明存在用户 返回false
+				ServletActionContext.getResponse().getWriter().println("failed");
+				return null;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		// 声明两个StringBuffer，sb1存列名，sb2存数据
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		// 对列中的数据进行判断
-		if (user.getId() != 0) {
+		if (user.getUsername() != null) {
 			sb1.append("username").append(",");
-			sb2.append("'" + user.getId() + "'").append(",");
+			sb2.append("'" + user.getUsername() + "'").append(",");
 		}
 		if (user.getPassword() != null) {
 			sb1.append("userpwd").append(",");
@@ -63,16 +74,53 @@ public class User_resisterByPwdAction extends ActionSupport {
 			sb2.append("'" + user.getPhone() + "'").append(",");
 		}
 		if (user.getAge() != null) {
-			sb1.append("userage");
-			sb2.append("'" + user.getAge() + "'");
+			sb1.append("userage").append("'");
+			sb2.append("'" + user.getAge() + "'").append(",");
 		}
-		sql = "insert into ouser(" + sb1.toString() + ") values(" + sb2.toString() + ")";
+		String resultSb1 = sb1.toString().substring(0, sb1.toString().length() - 1);
+		String resultSb2 = sb2.toString().substring(0, sb2.toString().length() - 1);
+		sql = "insert into ouser(" + resultSb1 + ") values(" + resultSb2 + ")";
 
-		System.out.println(sql);
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag = false;
+		try {
+			flag = DBOpreate.execute(sql);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(flag);
 
 		if (flag == true) {
-			ServletActionContext.getResponse().getWriter().println("success");
+
+			sql = "select Top 1 * from ouser where username = '" + user.getUsername() + "' or email='"
+					+ user.getUsername() + "'or phone='" + user.getUsername() + "'";
+
+			ResultSet result1 = DBOpreate.executeQuery(sql);
+			try {
+				result1.next();
+				if (user.getPassword().equals(result1.getString("userpwd"))) {
+
+					user.setAge(result1.getString("age"));
+					user.setBrithday(result1.getString("brithday"));
+					user.setEmail(result1.getString("email"));
+					user.setId(Integer.parseInt(result1.getString("id")));
+					user.setImgUrl(result1.getString("imgUrl"));
+					user.setPassword(result1.getString("userpwd"));
+					user.setPhone(result1.getString("phone"));
+					user.setSex(result1.getString("sex"));
+					user.setUsername(result1.getString("username"));
+					String data = gson.toJson(user);
+					ServletActionContext.getResponse().getWriter().println(data);
+					System.out.println(data);
+				}
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			ServletActionContext.getResponse().getWriter().println("failed");
 		}

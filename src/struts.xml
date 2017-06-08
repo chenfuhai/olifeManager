@@ -6,7 +6,7 @@
 <struts>
 
   <!-- 服务器指定一个临时的路径，这里使用了绝对路径，大家根据自己的Tomcat路径自行设置，否则会上传失败 -->
-	<constant name="struts.multipart.saveDir" value="D:\pro\apache-tomcat-8.5.15/temp"/>
+	<constant name="struts.multipart.saveDir" value="D:\pro\apache-tomcat-7.0.68/temp"/>
 	<constant name="struts.multipart.maxSize" value="30000000"></constant>
 	
     <package name="default" namespace="/" extends="struts-default">
@@ -58,7 +58,7 @@
         <action name="User_updateAction" class="android.User_updateAction">
 
         </action>
-        <action name="UserHead_updateAction" class="android.UserHead_updateAction">
+        <action name="UserHead_updateAction" class="android.UserHead_updateAction" method="upload">
         	<interceptor-ref name="fileUpload">
   				<param name="maximumSize">524288000</param>
   			</interceptor-ref>
@@ -66,6 +66,7 @@
   			
   			<param name="savePath">/upload</param>
              
+             <result name="input">/index.html</result>
 
         </action>
         <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">

@@ -1,7 +1,7 @@
 package utils;
 
 public class JudgeSQL {
-	public static String judgeSQL(String tableName,String colName,String colNameData,int limit,String order,int skip){
+	public static String jSQL(String tableName,String colName,String colNameData,int limit,String order,int skip){
 		String slimit;
 		String sorder;
 		String sSkip;

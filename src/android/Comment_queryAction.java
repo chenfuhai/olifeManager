@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,15 +36,18 @@ public class Comment_queryAction extends ActionSupport {
 		Gson gson = new GsonBuilder().create();
 		Query query = gson.fromJson(msg, Query.class);
 		String[] a = query.getWhereEqualTo();
-		sql = JudgeSQL.judgeSQL("onekeySharedDisc",a[0],a[1], query.getLimit(), query.getOrder(), query.getSkip());
+		sql = JudgeSQL.jSQL("onekeySharedDisc", a[0], a[1], query.getLimit(), query.getOrder(), query.getSkip());
 		sql = "select * from onekeySharedDisc where '" + a[0] + "' = '" + a[1] + "'";
-		ResultSet result = DBOpreate.executeQuery(sql);
-		if (result != null) {
-			OnekeySharedDisc disc = new OnekeySharedDisc();
-			try {
+		ArrayList<OnekeySharedDisc> lists = new ArrayList<>();
+		try {
+			ResultSet result = DBOpreate.executeQuery(sql);
+			while (result.next()) {
+
+				OnekeySharedDisc disc = new OnekeySharedDisc();
+
 				disc.setId(Integer.parseInt(result.getString("id")));
 				disc.setSharedMessageId(result.getString("sharedMessageId"));
-				disc.setUserId(result.getString("userid"));
+				disc.setUserId(result.getInt("userid")+"");
 				disc.setUserImgUrl(result.getString("userimgUrl"));
 				disc.setUsername(result.getString("username"));
 				if (result.getString("usersex") == "男") {
@@ -55,13 +59,17 @@ public class Comment_queryAction extends ActionSupport {
 				disc.setUserage(result.getString("userage"));
 				disc.setMessage(result.getString("discmessage"));
 
-				String data = gson.toJson(disc);
-				ServletActionContext.getResponse().getWriter().println(data);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				lists.add(disc);
+
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+		String data = gson.toJson(lists);
+		ServletActionContext.getResponse().getWriter().println(data);
+
 		return null;
 	}
 }
