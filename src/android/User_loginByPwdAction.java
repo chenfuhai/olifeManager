@@ -29,9 +29,12 @@ public class User_loginByPwdAction extends ActionSupport{
 	public String execute() throws IOException, SQLException{
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().create();
+		System.out.println(msg);
 		User user = gson.fromJson(msg, User.class);
+		System.out.println(user.toString());
 		if(user.getUsername()!=null){
 			sql="select * from ouser where username = '"+user.getUsername()+"' or email='"+user.getUsername()+"'or phone='"+user.getUsername()+"'";
+			System.out.println(sql);
 			ResultSet result = DBOpreate.executeQuery(sql);	
 			if(user.getPassword().equals(result.getString("userpwd"))){
 				try {		

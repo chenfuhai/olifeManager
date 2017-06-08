@@ -41,6 +41,7 @@ public class Goods_queryAction extends ActionSupport {
 		Query query = gson.fromJson(msg, Query.class);
 		sql = JudgeSQL.judgeSQL("goods",null,null, query.getLimit(), query.getOrder(), query.getSkip());
 		// 连接数据库并进行查找操作，将返回的数据流存放
+		System.out.println("1"+sql);
 		ResultSet result = DBOpreate.executeQuery(sql);
 		if (result != null) {
 			//构造的Goods类

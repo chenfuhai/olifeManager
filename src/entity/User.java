@@ -110,6 +110,13 @@ public class User {
         this.brithday = brithday;
     }
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", age=" + age + ", phone="
+				+ phone + ", email=" + email + ", phoneVe=" + phoneVe + ", emailVe=" + emailVe + ", imgUrl=" + imgUrl
+				+ ", sex=" + sex + ", brithday=" + brithday + "]";
+	}
+
 
 
 }

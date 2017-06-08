@@ -21,55 +21,107 @@
         </action>
         <action name="Comment_submitAction" class="android.Comment_submitAction">
             
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="FeedBack_queryAction" class="android.FeedBack_queryAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="FeedBack_submitAction" class="android.FeedBack_submitAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="Goods_queryAction" class="android.Goods_queryAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="ShareMessage_queryByIdAction" class="android.ShareMessage_queryByIdAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="ShareMessage_saveAction" class="android.ShareMessage_saveAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="TestLastResult_queryByIdAction" class="android.TestLastResult_queryByIdAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="TestResult_queryByIdAction" class="android.TestResult_queryByIdAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="TestResult_saveAction" class="android.TestResult_saveAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="User_changePwdAction" class="android.User_changePwdAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="User_loginByPwdAction" class="android.User_loginByPwdAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="User_resisterByPwdAction" class="android.User_resisterByPwdAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="User_updateAction" class="android.User_updateAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="UserHead_updateAction" class="android.UserHead_updateAction">
         	<interceptor-ref name="fileUpload">
@@ -79,11 +131,19 @@
   			
   			<param name="savePath">/upload</param>
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
         <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">
              
+<<<<<<< HEAD
             
+=======
+             
+>>>>>>> branch 'develop' of https://github.com/chenfuhai/olifeManager
         </action>
     </package>
     <!-- 待完善 -->
