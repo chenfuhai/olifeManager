@@ -47,7 +47,7 @@ public class Goods_queryAction extends ActionSupport {
 			//构造的Goods类
 			Goods goods = new Goods();
 			try {	
-				goods.setId(Integer.parseInt(result.getString("goodid")));
+				goods.setId(Integer.parseInt(result.getString("id")));
 				goods.setDesc(result.getString("gooddesc"));
 				goods.setName(result.getString("goodname"));
 				goods.setIconUrl(result.getString("iconUrl"));
