@@ -28,6 +28,8 @@ public class User_resisterByPwdAction extends ActionSupport {
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		User user = gson.fromJson(msg, User.class);
+		System.out.println(msg);
+		System.out.println(user.toString());
 		// 声明两个StringBuffer，sb1存列名，sb2存数据
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
@@ -42,6 +44,7 @@ public class User_resisterByPwdAction extends ActionSupport {
 		}
 		sql = "insert into ouser(" + sb1.toString() + ") values(" + sb2.toString() + ")";
 
+		System.out.println(sql);
 		boolean flag = DBOpreate.execute(sql);
 
 		if (flag == true) {

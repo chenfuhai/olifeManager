@@ -21,55 +21,55 @@
         </action>
         <action name="Comment_submitAction" class="android.Comment_submitAction">
             
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="FeedBack_queryAction" class="android.FeedBack_queryAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="FeedBack_submitAction" class="android.FeedBack_submitAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="Goods_queryAction" class="android.Goods_queryAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="ShareMessage_queryByIdAction" class="android.ShareMessage_queryByIdAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="ShareMessage_saveAction" class="android.ShareMessage_saveAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="TestLastResult_queryByIdAction" class="android.TestLastResult_queryByIdAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="TestResult_queryByIdAction" class="android.TestResult_queryByIdAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="TestResult_saveAction" class="android.TestResult_saveAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="User_changePwdAction" class="android.User_changePwdAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="User_loginByPwdAction" class="android.User_loginByPwdAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="User_resisterByPwdAction" class="android.User_resisterByPwdAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="User_updateAction" class="android.User_updateAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="UserHead_updateAction" class="android.UserHead_updateAction">
         	<interceptor-ref name="fileUpload">
@@ -79,11 +79,11 @@
   			
   			<param name="savePath">/upload</param>
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
         <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">
              
-            <!--返回值类型设置为json,不设置返回页面-->
+             
         </action>
     </package>
     <!-- 待完善 -->
