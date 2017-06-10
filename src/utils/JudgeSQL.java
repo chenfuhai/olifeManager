@@ -28,7 +28,11 @@ public class JudgeSQL {
 			scolNmae=""+colName+" = '"+colNameData+"' and";
 		}
 		if(skip==0){
-			sSkip = "";
+			if (colName!=null && colNameData!=null) {
+				sSkip = "where "+colName+"="+colNameData;				
+			}else{
+				sSkip = "";
+			}
 		}else{
 			if(order==null){
 				sorder = "";
@@ -41,8 +45,8 @@ public class JudgeSQL {
 					sorder ="order by "+col+" DESC ";
 				}
 			};
-			sSkip = "where "+scolNmae+" id not in (select top "+skip+" id from feedback "+sorder+")";
+			sSkip = "where "+scolNmae+" id not in (select top "+skip+" id from "+tableName+"  "+sorder+")";
 		}
-		return "select "+slimit+" * from feedback "+sSkip+" "+sorder+"";
+		return "select "+slimit+" * from "+tableName+" "+sSkip+" "+sorder;
 	}
 }

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
@@ -32,18 +34,28 @@ public class ShareMessage_queryByIdAction extends ActionSupport {
 			// sql = "select * from onekeySharedMessage where
 			// '"+a[0]+"'='"+a[1]+"'";
 			ArrayList<OnekeySharedMessage> list = new ArrayList<>();
-			ResultSet result = DBOpreate.executeQuery(sql);
+			ResultSet result = new DBOpreate().executeQuery(sql);
 			while (result.next()) {
 				OnekeySharedMessage message = new OnekeySharedMessage();
 
-				message.setMessageid(Integer.parseInt(result.getString("messageid")));
+				message.setId(result.getInt("id"));
 				message.setUserId(result.getInt("userid")+"");
-				message.setResultMark(Integer.parseInt(result.getString("resultMark")));
-				message.setBen(Integer.parseInt(result.getString("ben")));
-				message.setPm2_5(Integer.parseInt(result.getString("pm2_5")));
+				if (result.getString("resultMark")!=null) {
+					message.setResultMark(Integer.parseInt(result.getString("resultMark")));
+				}
+				if (result.getString("ben")!=null) {
+					message.setBen(Integer.parseInt(result.getString("ben")));
+				}
+				if (result.getString("pm2_5")!=null) {
+					message.setPm2_5(Integer.parseInt(result.getString("pm2_5")));
+				}
+				if (result.getString("ing")!=null) {
+					message.setLng(Double.parseDouble(result.getString("ing")));
+				}
+				if (result.getString("lat")!=null) {
+					message.setLat(Double.parseDouble(result.getString("lat")));
+				}
 				message.setSuggest(result.getString("suggest"));
-				message.setLng(Double.parseDouble(result.getString("ing")));
-				message.setLat(Double.parseDouble(result.getString("lat")));
 				message.setProvince(result.getString("province"));
 				message.setDistrict(result.getString("district"));
 				message.setCity(result.getString("city"));
@@ -61,7 +73,9 @@ public class ShareMessage_queryByIdAction extends ActionSupport {
 			
 
 			String data = gson.toJson(list);
-			ServletActionContext.getResponse().getWriter().println(data);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8;");
+			response.getWriter().println(data);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

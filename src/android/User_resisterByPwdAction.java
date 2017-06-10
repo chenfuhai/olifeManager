@@ -14,9 +14,7 @@ import entity.User;
 import utils.DBOpreate;
 import utils.NetUtils;
 
-/**
- * �û�ע�� ������
- */
+
 public class User_resisterByPwdAction extends ActionSupport {
 	private String sql;
 
@@ -28,7 +26,7 @@ public class User_resisterByPwdAction extends ActionSupport {
 		sql = "select * from ouser where username = '" + user.getUsername() + "' or email='" + user.getUsername()
 				+ "'or phone='" + user.getUsername() + "'";
 
-		ResultSet result = DBOpreate.executeQuery(sql);
+		ResultSet result = new DBOpreate().executeQuery(sql);
 
 		try {
 			if (result.next()) {
@@ -83,7 +81,7 @@ public class User_resisterByPwdAction extends ActionSupport {
 
 		boolean flag = false;
 		try {
-			flag = DBOpreate.execute(sql);
+			flag = new DBOpreate().execute(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,7 +94,7 @@ public class User_resisterByPwdAction extends ActionSupport {
 			sql = "select Top 1 * from ouser where username = '" + user.getUsername() + "' or email='"
 					+ user.getUsername() + "'or phone='" + user.getUsername() + "'";
 
-			ResultSet result1 = DBOpreate.executeQuery(sql);
+			ResultSet result1 = new DBOpreate().executeQuery(sql);
 			try {
 				result1.next();
 				if (user.getPassword().equals(result1.getString("userpwd"))) {

@@ -19,7 +19,7 @@ public class OnekeySharedDisc  {
         this.id = id;
     }
 
-    private String sharedMessageId; //分享结果ID
+    private int sharedMessageId; //分享结果ID
     private String  userId;
     private String userImgUrl;
     private String  username;
@@ -29,7 +29,7 @@ public class OnekeySharedDisc  {
     private String message;//评论内容
 
 
-    public OnekeySharedDisc(String sharedMessageId, String userId) {
+    public OnekeySharedDisc(int sharedMessageId, String userId) {
         this.sharedMessageId = sharedMessageId;
         this.userId = userId;
     }
@@ -37,11 +37,11 @@ public class OnekeySharedDisc  {
        
     }
 
-    public String getSharedMessageId() {
+    public int getSharedMessageId() {
         return sharedMessageId;
     }
 
-    public void setSharedMessageId(String sharedMessageId) {
+    public void setSharedMessageId(int sharedMessageId) {
         this.sharedMessageId = sharedMessageId;
     }
 

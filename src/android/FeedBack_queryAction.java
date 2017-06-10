@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
@@ -30,7 +32,7 @@ public class FeedBack_queryAction extends ActionSupport {
 			Query query = gson.fromJson(msg, Query.class);
 			sql = JudgeSQL.jSQL("feedback", null, null, query.getLimit(), query.getOrder(), query.getSkip());
 
-			ResultSet result = DBOpreate.executeQuery(sql);
+			ResultSet result = new DBOpreate().executeQuery(sql);
 			while (result.next()) {
 				Feedback feedback = new Feedback();
 
@@ -42,14 +44,16 @@ public class FeedBack_queryAction extends ActionSupport {
 				
 				feedback.setUserName(result.getString("username"));
 				feedback.setUserSex(result.getString("usersex"));
-				feedback.setId(Integer.parseInt(result.getString("id")));
+				feedback.setId(result.getInt("id"));
 
 				feedbacks.add(feedback);
 
 			}
 
 			String data = gson.toJson(feedbacks);
-			ServletActionContext.getResponse().getWriter().println(data);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8;");
+			response.getWriter().println(data);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

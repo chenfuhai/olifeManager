@@ -8,7 +8,7 @@ package entity;
  */
 
 public class OnekeySharedMessage {
-	private int messageid;
+	private int id;
     private Integer  resultMark;//结果总分数
     private Integer ben;//苯详细评分
     private Integer  pm2_5;//PM2.5详细评分
@@ -42,11 +42,11 @@ public class OnekeySharedMessage {
       
     }
     
-    public int getMessageid() {
-		return messageid;
+    public int getId() {
+		return id;
 	}
-	public void setMessageid(int messageid) {
-		this.messageid = messageid;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public Integer getResultMark() {
         return resultMark;

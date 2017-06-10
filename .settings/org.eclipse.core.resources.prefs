@@ -1,4 +1,11 @@
 eclipse.preferences.version=1
+encoding//src/android/Comment_queryAction.java=UTF-8
+encoding//src/android/Comment_submitAction.java=UTF-8
+encoding//src/android/Goods_queryAction.java=UTF-8
+encoding//src/android/ShareMessage_saveAction.java=UTF-8
+encoding//src/android/TestResult_saveAction.java=UTF-8
+encoding//src/android/User_changePwdAction.java=UTF-8
 encoding//src/android/User_loginByPwdAction.java=GBK
 encoding//src/android/User_resisterByPwdAction.java=UTF-8
-encoding/<project>=UTF-8
+encoding//src/android/User_updateAction.java=UTF-8
+encoding//src/utils/Query.java=UTF-8

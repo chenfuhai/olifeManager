@@ -1,19 +1,12 @@
 package utils;
 
 import java.util.ArrayList;
-
-/**
- * 存放查询的参数 方便服务器解析 服务器和客户端都有一个一样的类 然后用Gson将信息传递上去
- * 依据里面的信息来制作SQL 语句
- *
- * order 正负开头代表正序 逆序 然后是属性名
- */
 public class Query {
     
-    private Integer limit;//拿出数据的个数限制
-    private String order;//排序
-    private String[] whereEqualTo;//数据名称以及对应值
-    private Integer skip;//跳过数据的个数
+    private int limit;
+    private String order;
+    private String[] whereEqualTo;
+    private int skip;
     private ArrayList<String[]> WhereLessThanOrEqualTo;
     private ArrayList<String[]> WhereGreaterThanOrEqualTo;
 
@@ -21,10 +14,6 @@ public class Query {
         return WhereLessThanOrEqualTo;
     }
 
-    /**
-     * String[] 里面存一对参数 ArrayList有多个参数对
-     * @param whereLessThanOrEqualTo
-     */
     public void setWhereLessThanOrEqualTo(ArrayList<String[]> whereLessThanOrEqualTo) {
         WhereLessThanOrEqualTo = whereLessThanOrEqualTo;
     }

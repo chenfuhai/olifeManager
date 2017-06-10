@@ -16,7 +16,6 @@ import utils.NetUtils;
 import utils.UserPwdChange;
 
 public class User_changePwdAction extends ActionSupport {
-	// 先查询数据库中旧密码会不会对 如果正确 更改新密码
 	private String sql;
 
 	public String execute() {
@@ -27,12 +26,11 @@ public class User_changePwdAction extends ActionSupport {
 			UserPwdChange user = gson.fromJson(msg, UserPwdChange.class);
 			String sqlold = "select Top 1 * from ouser where id = " + user.getId() + "and userpwd='" + user.getOldPwd()
 					+ "'";
-			ResultSet resultSet = DBOpreate.executeQuery(sqlold);
+			ResultSet resultSet = new DBOpreate().executeQuery(sqlold);
 			boolean flag = false;
 			if (resultSet.next()) {
-				// 替换旧密码
 				sql = "update ouser set userpwd = '" + user.getNewPwd() + "' where id = " + user.getId();
-				flag = DBOpreate.execute(sql);
+				flag =  new DBOpreate().execute(sql);
 			}
 
 			if (flag == true) {

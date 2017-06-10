@@ -41,18 +41,28 @@ public class TestResult_queryByIdAction extends ActionSupport {
 		// sql="select * from onekeyResultRecord where '"+a[0]+"' = '"+a[1]+"'";
 		ArrayList<OnekeyResultRecord> list = new ArrayList<>();
 		
-			ResultSet result = DBOpreate.executeQuery(sql);
+			ResultSet result = new DBOpreate().executeQuery(sql);
 			while (result.next()) {
 				OnekeyResultRecord record = new OnekeyResultRecord();
 
-				record.setId(Integer.parseInt(result.getString("id")));
+				record.setId(result.getInt("id"));
 				record.setUserId(result.getInt("userid")+"");
-				record.setResultMark(Integer.parseInt(result.getString("resultMark")));
-				record.setBen(Integer.parseInt(result.getString("ben")));
-				record.setPm2_5(Integer.parseInt(result.getString("pm2_5")));
+				if (result.getString("resultMark")!=null) {
+					record.setResultMark(Integer.parseInt(result.getString("resultMark")));					
+				}
+				if (result.getString("lat")!=null) {
+					record.setLat(Double.parseDouble(result.getString("lat")));
+				}
+				if (result.getString("lng")!=null) {
+					record.setLng(Double.parseDouble(result.getString("lng")));
+				}
+				if (result.getString("pm2_5")!=null) {
+					record.setPm2_5(Integer.parseInt(result.getString("pm2_5")));
+				}
+				if (result.getString("ben")!=null) {
+					record.setBen(Integer.parseInt(result.getString("ben")));
+				}
 				record.setSuggest(result.getString("suggest"));
-				record.setLng(Double.parseDouble(result.getString("lng")));
-				record.setLat(Double.parseDouble(result.getString("lat")));
 				record.setProvince(result.getString("province"));
 				record.setDistrict(result.getString("district"));
 				record.setCity(result.getString("city"));
@@ -63,12 +73,16 @@ public class TestResult_queryByIdAction extends ActionSupport {
 			}
 
 			String data = gson.toJson(list);
-			ServletActionContext.getResponse().getWriter().println(data);
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8;");
+			response.getWriter().println(data);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e){
 			e.printStackTrace();
 		}
 

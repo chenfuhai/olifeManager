@@ -29,11 +29,11 @@ public class Comment_submitAction extends ActionSupport {
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		OnekeySharedDisc disc = gson.fromJson(msg, OnekeySharedDisc.class);
-		// 声明两个StringBuffer，sb1存列名，sb2存数据
+		
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
-		// 对列中的数据进行判断
-		if (disc.getSharedMessageId() != null) {
+		
+		if (disc.getSharedMessageId() != 0) {
 			sb1.append("sharedMessageId").append(",");
 			sb2.append("'" + disc.getSharedMessageId() + "'").append(",");
 		}
@@ -65,7 +65,7 @@ public class Comment_submitAction extends ActionSupport {
 		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
 		sql = "insert into onekeySharedDisc(" + result1 + ") values(" + result2 + ")";
 
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag = new DBOpreate().execute(sql);
 
 		if (flag == true) {
 			ServletActionContext.getResponse().getWriter().println("success");

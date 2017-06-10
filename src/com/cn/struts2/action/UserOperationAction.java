@@ -5,11 +5,6 @@ import java.sql.ResultSet;
 import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
-/**
- * 用户管理
- * @author wuguofei
- *
- */
 public class UserOperationAction extends ActionSupport{
 	private String userId;
 	private String userName;
@@ -83,38 +78,26 @@ public class UserOperationAction extends ActionSupport{
 		this.brithday = brithday;
 	}
 	
-	/**
-	 * 显示
-	 */
 	public String user_show(){
 		sql="select * from ouser";
-		ResultSet flag = DBOpreate.executeQuery(sql);
+		ResultSet flag =  new DBOpreate().executeQuery(sql);
 		if(flag != null){
-			//执行具体操作
 		}
 		return null; 
 	}
-	/**
-	 * 删除
-	 */
 	public String user_dalete(){
 		sql="delete from ouser where userid = '" + userId + "'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			//执行具体操作
 		}
 		return null;
 	}
 	
-	/**
-	 * 编辑用户
-	 */
 	public String user_update(){
 		sql="update ouser set username = '"+userName+"'and userpwd = '"+userPwd+"'and phoneNum = '"+phoneNum+"'and sex = '"+sex+"'"
 				+ "and imgUrl = '"+imgUrl+"'and email = '"+email+"'and brithday = '"+brithday+"'where userid = '"+userId+"'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			//执行具体操作
 		}
 		return null;
 	}

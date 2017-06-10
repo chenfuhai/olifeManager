@@ -61,7 +61,7 @@ public class FeedBack_submitAction extends ActionSupport {
 			System.out.println(sql);
 			boolean flag = false;
 			try {
-				flag = DBOpreate.execute(sql);
+				flag = new DBOpreate().execute(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

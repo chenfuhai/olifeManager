@@ -5,11 +5,7 @@ import java.sql.ResultSet;
 import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
-/**
- * 对用户反馈进行处理
- * @author wuguofei
- *
- */
+
 public class FeedbackOperationAction extends ActionSupport{
 	private String feedbackId;
     private String userName;
@@ -69,25 +65,21 @@ public class FeedbackOperationAction extends ActionSupport{
 		this.phone = phone;
 	}
     
-	/**
-	 * 显示
-	 */
+	
 	public String user_show(){
 		sql="select * from feedback";
-		ResultSet flag = DBOpreate.executeQuery(sql);
+		ResultSet flag =  new DBOpreate().executeQuery(sql);
 		if(flag != null){
-			//执行具体操作
+		
 		}
 		return null;
 	}
-	/**
-	 * 删除
-	 */
+	
 	public String user_dalete(){
 		sql="delete from feedback where feedbackid = '" + feedbackId + "'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			//执行具体操作
+			
 		}
 		return null;
 	}

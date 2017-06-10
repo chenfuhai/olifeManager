@@ -20,7 +20,7 @@ public class Comment_deleteAction extends ActionSupport{
 		Gson gson = new GsonBuilder().create();
 		Delete delete = gson.fromJson(msg,Delete.class);
 		sql="delete from '"+delete.getTableName()+"'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag = new DBOpreate().execute(sql);
 		if(flag == true){
 			ServletActionContext.getResponse().getWriter().println("success");
 		}else{

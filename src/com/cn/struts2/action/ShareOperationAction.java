@@ -5,18 +5,14 @@ import java.sql.ResultSet;
 import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
-/**
- * 分享信息管理
- * @author wuguofei
- *
- */
+
 
 public class ShareOperationAction extends ActionSupport{
 	private String messageId;
-	private Integer resultMark;// 结果总分数
-	private Integer ben;// 苯详细评分
-	private Integer pm2_5;// PM2.5详细评分
-	private String suggest;// 科学建议
+	private Integer resultMark;
+	private Integer ben;
+	private Integer pm2_5;
+	private String suggest;
 	private String userId;
 	private Double lng;
 	private Double lat;
@@ -104,39 +100,34 @@ public class ShareOperationAction extends ActionSupport{
 	public void setStreetNum(String streetNum) {
 		StreetNum = streetNum;
 	}
-	/**
-	 * 显示
-	 */
+	
 	public String Share_show(){
 		sql="select * from onekeySharedMessage";
-		ResultSet flag = DBOpreate.executeQuery(sql);
+		ResultSet flag =  new DBOpreate().executeQuery(sql);
 		if(flag != null){
-			//执行具体操作
+		
 		}
 		return null; 
 	}
-	/**
-	 * 删除
-	 */
+	
+	
 	public String Share_dalete(){
 		sql="delete from onekeySharedMessage where messageid = '" + messageId + "'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			//执行具体操作
+			
 		}
 		return null;
 	}	
-	/**
-	 * 编辑
-	 */
+	
 	public String Share_update(){
 		sql="update onekeySharedMessage set resultMark = '"+resultMark+"'and ben = '"+ben+"'and pm2_5 = '"+pm2_5+"'and suggest = '"+suggest+"'"
 				+ "and ing = '"+lng+"'and lat = '"+lat+"'and province = '"+province+"'"
 						+ "and district = '"+district+"'and city = '"+city+"'and street = '"+street+"'"
 								+ "and streetNum = '"+StreetNum+"'where messageid = '"+messageId+"'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			//执行具体操作
+			
 		}
 		return null;
 	}

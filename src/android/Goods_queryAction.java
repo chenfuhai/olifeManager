@@ -23,32 +23,24 @@ import utils.DBOpreate;
 import utils.JudgeSQL;
 import utils.NetUtils;
 import utils.Query;
-/**
- * 获取商品的数据信息
- * 利用http协议
- * 
- */
+
 public class Goods_queryAction extends ActionSupport {
 	
 	private static final long serialVersionUID = 1L;
-	//利用http协议获取服务器端数据
 	private String sql;
 
 	public String execute() throws IOException {
-		//获取安卓端传送过来的数据值
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
-		//以gson形式将数据中的条件取出
 		Query query = gson.fromJson(msg, Query.class);
 		sql = JudgeSQL.jSQL("goods",null,null, query.getLimit(), query.getOrder(), query.getSkip());
-		// 连接数据库并进行查找操作，将返回的数据流存放
-		System.out.println("1"+sql);
-		ResultSet result = DBOpreate.executeQuery(sql);
+	
+		ResultSet result = new DBOpreate().executeQuery(sql);
 		ArrayList<Goods> goods = new ArrayList<>();
 		try {
 			while(result.next()){
 				Goods good = new Goods();
-				good.setId(Integer.parseInt(result.getString("id")));
+				good.setId(result.getInt("id"));
 				good.setDesc(result.getString("gooddesc"));
 				good.setName(result.getString("goodname"));
 				good.setIconUrl(result.getString("iconUrl"));
@@ -59,7 +51,9 @@ public class Goods_queryAction extends ActionSupport {
 			e1.printStackTrace();
 		}
 		String data = gson.toJson(goods);
-		ServletActionContext.getResponse().getWriter().println(data);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=UTF-8;");
+		response.getWriter().println(data);
 		
 		return null;
 	}

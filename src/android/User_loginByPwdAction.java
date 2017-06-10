@@ -22,9 +22,7 @@ import utils.DBOpreate;
 import utils.NetUtils;
 import utils.Query;
 
-/**
- * �û���¼ ������
- */
+
 public class User_loginByPwdAction extends ActionSupport {
 	private String sql;
 
@@ -38,14 +36,14 @@ public class User_loginByPwdAction extends ActionSupport {
 			sql = "select * from ouser where username = '" + user.getUsername() + "' or email='" + user.getUsername()
 					+ "'or phone='" + user.getUsername() + "'";
 			
-			ResultSet result = DBOpreate.executeQuery(sql);
+			ResultSet result = new DBOpreate().executeQuery(sql);
 			result.next();
 			if (user.getPassword().equals(result.getString("userpwd"))) {
 				try {
 					user.setAge(result.getString("age"));
 					user.setBrithday(result.getString("brithday"));
 					user.setEmail(result.getString("email"));
-					user.setId(Integer.parseInt(result.getString("id")));
+					user.setId(result.getInt("id"));
 					user.setImgUrl(result.getString("imgUrl"));
 					user.setPassword(result.getString("userpwd"));
 					user.setPhone(result.getString("phone"));

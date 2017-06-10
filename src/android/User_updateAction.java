@@ -18,7 +18,6 @@ public class User_updateAction extends ActionSupport{
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		User user = gson.fromJson(msg, User.class);
-		// 声明两个StringBuffer，sb1存列名，sb2存数据
 		
 		String sb3 = new String();
 		String sb4 = new String();
@@ -34,7 +33,6 @@ public class User_updateAction extends ActionSupport{
 		String sb14= new String();
 		String sb15 = new String();
 		String sb16= new String();
-		// 对列中的数据进行判断
 		
 		if (user.getUsername() != null) {
 			sb3="username=";
@@ -70,7 +68,7 @@ public class User_updateAction extends ActionSupport{
 	
 		sql = "update ouser set "+result+" where id = "+user.getId();
 		
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag = new DBOpreate().execute(sql);
 
 		if (flag == true) {
 			ServletActionContext.getResponse().getWriter().println("success");

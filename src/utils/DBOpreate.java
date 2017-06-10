@@ -4,18 +4,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-/**
- * 进行数据库的操作 查询 执行语句
- * @author chenfuhai
- *
- */
 public class DBOpreate {
-    private static DBConnection db;
-	private static Connection conn;
-	private static Statement state;
-	private static ResultSet rs;
+    private  DBConnection db;
+	private  Connection conn;
+	private  Statement state;
+	private  ResultSet rs;
 
-	private static void init(){
+	private  void init(){
 		try {
 			db=DBConnection.getInstance();
 			conn=db.getConnection();
@@ -26,19 +21,19 @@ public class DBOpreate {
 		}
 	}
 	
-	public static ResultSet executeQuery(String sql){
+	public  ResultSet executeQuery(String sql){
 		init();
-		ResultSet resultSet = null;
+		
 		 try {
-				resultSet  = rs=state.executeQuery(sql);
+				rs=state.executeQuery(sql);
 				return rs;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return resultSet;
+		return null;
 	}
-	public static boolean execute(String sql){
+	public  boolean execute(String sql){
 		init();
 		boolean flag = false;
 		try {
@@ -48,13 +43,11 @@ public class DBOpreate {
 			// TODO Auto-generated catch block
 			flag = false;
 			e.printStackTrace();
-		}finally {
-			DBOpreate.closeAllConnection();
 		}
 		return flag;
 		
 	}
-	public static void closeAllConnection(){
+	public  void closeAllConnection(){
 		
 		try {
 			if (rs.isClosed()) {

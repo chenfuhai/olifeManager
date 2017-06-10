@@ -25,7 +25,7 @@ public class LoginAction extends ActionSupport{
 	
 	public String execute(){
 		sql="select * from ouser where userid='"+userId+"' and userpwd = '"+userPwd+"'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
 			return null;
 		}

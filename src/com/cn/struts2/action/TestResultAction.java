@@ -44,25 +44,21 @@ public class TestResultAction extends ActionSupport{
 		this.lat = lat;
 	}
     
-	/**
-	 * 显示
-	 */
+	
 	public String TestResult_show(){
 		sql="select * from onekeyResultRecord";
-		ResultSet flag = DBOpreate.executeQuery(sql);
+		ResultSet flag =  new DBOpreate().executeQuery(sql);
 		if(flag != null){
-			//执行具体操作
+			
 		}
 		return null; 
 	}
-	/**
-	 * 删除
-	 */
+
 	public String TestResult_dalete(){
 		sql="delete from onekeyResultRecord where recordId = '" + recordId + "'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			//执行具体操作
+		
 		}
 		return null;
 	}

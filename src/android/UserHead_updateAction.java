@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -73,24 +74,25 @@ public class UserHead_updateAction extends ActionSupport {
 		FileOutputStream fos = null;
 		FileInputStream fis = null;
 		PrintWriter out = null;
+		String uuidFileName = UUID.randomUUID()+".png";
 		try {
 			out = ServletActionContext.getResponse().getWriter();
-			System.out.println(123);
+			
 
-			System.out.println(getSavePath() + "\\" + getImgFileName());
+			
 			File f1 = new File(getSavePath());
 			if(!f1.exists()){
 				f1.mkdirs();				
 			}
 
-			fos = new FileOutputStream(getSavePath() + "\\" + getImgFileName());
+			fos = new FileOutputStream(getSavePath() + "\\" + uuidFileName);
 			fis = new FileInputStream(getImg());
 			byte[] buffer = new byte[1024];
 			int len = 0;
 			while ((len = fis.read(buffer)) > 0) {
 				fos.write(buffer, 0, len);
 			}
-			result = savePath + "/" + getImgFileName();
+			result = savePath + "/" + uuidFileName;
 		} catch (Exception e) {
 			result = "upload file failed ! ";
 			e.printStackTrace();
@@ -108,7 +110,7 @@ public class UserHead_updateAction extends ActionSupport {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(123);
+		
 
 		out.print(result);
 		out.close();

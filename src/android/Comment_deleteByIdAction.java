@@ -20,7 +20,7 @@ public class Comment_deleteByIdAction extends ActionSupport{
 		Delete delete = gson.fromJson(msg,Delete.class);
 		String[] a = delete.getWhereEquelTos();
 		sql="delete from '"+delete.getTableName()+"' where '"+a[0]+"'='"+a[1]+"'";
-		boolean flag = DBOpreate.execute(sql);
+		boolean flag = new DBOpreate().execute(sql);
 		if(flag == true){
 			ServletActionContext.getResponse().getWriter().println("success");
 		}else{

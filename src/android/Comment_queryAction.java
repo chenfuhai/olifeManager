@@ -37,20 +37,21 @@ public class Comment_queryAction extends ActionSupport {
 		Query query = gson.fromJson(msg, Query.class);
 		String[] a = query.getWhereEqualTo();
 		sql = JudgeSQL.jSQL("onekeySharedDisc", a[0], a[1], query.getLimit(), query.getOrder(), query.getSkip());
-		sql = "select * from onekeySharedDisc where '" + a[0] + "' = '" + a[1] + "'";
+		//sql = "select * from onekeySharedDisc where '" + a[0] + "' = '" + a[1] + "'";
 		ArrayList<OnekeySharedDisc> lists = new ArrayList<>();
 		try {
-			ResultSet result = DBOpreate.executeQuery(sql);
+			ResultSet result =new DBOpreate().executeQuery(sql);
 			while (result.next()) {
 
 				OnekeySharedDisc disc = new OnekeySharedDisc();
 
-				disc.setId(Integer.parseInt(result.getString("id")));
-				disc.setSharedMessageId(result.getString("sharedMessageId"));
+				disc.setId(result.getInt("id"));
+				disc.setSharedMessageId(result.getInt("sharedMessageId"));
 				disc.setUserId(result.getInt("userid")+"");
 				disc.setUserImgUrl(result.getString("userimgUrl"));
+				System.out.println(result.getString("userimgUrl"));
 				disc.setUsername(result.getString("username"));
-				if (result.getString("usersex") == "男") {
+				if (result.getString("usersex") == "true") {
 					disc.setUsersex(true);
 				} else {
 					disc.setUsersex(false);
@@ -66,10 +67,12 @@ public class Comment_queryAction extends ActionSupport {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("11111111111111111111111111"+sql+lists.size());
 
 		String data = gson.toJson(lists);
-		ServletActionContext.getResponse().getWriter().println(data);
-
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.getWriter().println(data);
+		response.setContentType("text/html;charset=UTF-8;");
 		return null;
 	}
 }

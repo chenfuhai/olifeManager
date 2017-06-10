@@ -18,19 +18,15 @@ import entity.OnekeyResultRecord;
 import entity.OnekeySharedDisc;
 import utils.DBOpreate;
 import utils.NetUtils;
-/**
- * ������Խ�� ������
- */
+
 public class TestResult_saveAction extends ActionSupport{
 	private String sql;
 	public String execute() throws IOException{
 		String msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		OnekeyResultRecord record = gson.fromJson(msg, OnekeyResultRecord.class);
-		// 声明两个StringBuffer，sb1存列名，sb2存数据
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
-		// 对列中的数据进行判断
 		if (record.getUserId() != null) {
 			sb1.append("userid").append(",");
 			sb2.append("'" + record.getUserId() + "'").append(",");
@@ -56,8 +52,8 @@ public class TestResult_saveAction extends ActionSupport{
 			sb2.append("'" + record.getLng() + "'").append(",");
 		}
 		if (record.getLat() != null) {
-			sb1.append("lat");
-			sb2.append("'" + record.getLat() + "'");
+			sb1.append("lat").append(",");
+			sb2.append("'" + record.getLat() + "'").append(",");
 		}
 		if (record.getProvince() != null) {
 			sb1.append("province").append(",");
@@ -87,8 +83,16 @@ public class TestResult_saveAction extends ActionSupport{
 		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
 		sql = "insert into onekeyResultRecord(" + result1 + ") values(" + result2 + ")";	
 		System.out.println(sql);
-		boolean flag = DBOpreate.execute(sql);
 		
+		boolean flag = false;
+		try {
+			flag = new DBOpreate().execute(sql);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(flag);
 		if (flag == true) {
 			ServletActionContext.getResponse().getWriter().println("success");
 		} else {

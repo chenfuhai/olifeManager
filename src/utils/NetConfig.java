@@ -1,9 +1,4 @@
 package utils;
-/**
- * ���������IP����
- * @author chenfuhai
- *
- */
 public class NetConfig {
 	public static String IP="127.0.0.1";
 	public static String PORT="1433";
