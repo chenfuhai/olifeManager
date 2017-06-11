@@ -50,6 +50,7 @@ public class FeedbackOperationAction extends ActionSupport{
 			}
 			String data = gson.toJson(feedbackData);
 			try {
+				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().println(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

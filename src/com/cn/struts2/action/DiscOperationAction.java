@@ -42,6 +42,7 @@ public class DiscOperationAction extends ActionSupport{
 			}
 			String data = gson.toJson(discs);
 			try {
+				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().print(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

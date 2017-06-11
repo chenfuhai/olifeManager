@@ -90,6 +90,45 @@
     	<action name="goods_show" class="com.cn.struts2.action.GoodsOperationAction" method="goods_show">
     		
     	</action>
+    	<action name="UploadFile" class="com.cn.struts2.action.UploadFile">
+        	<interceptor-ref name="fileUpload">
+  				<param name="maximumSize">524288000</param>
+  			</interceptor-ref>
+  			<interceptor-ref name="defaultStack"/>
+  			
+  			<param name="savePath">/upload</param>
+             
+             <result name="input">/index.html</result>
+        </action>
+        <action name="Disc_show" class="com.cn.struts2.action.DiscOperationAction" method="Disc_show">
+    		
+    	</action>
+    	<action name="feedback_show" class="com.cn.struts2.action.FeedbackOperationAction" method="feedback_show">
+    		
+    	</action>
+    	<action name="goods_update" class="com.cn.struts2.action.GoodsOperationAction" method="goods_update">
+    		
+    	</action>
+    	<action name="Share_show" class="com.cn.struts2.action.ShareOperationAction" method="Share_show">
+    		
+    	</action>
+    	<action name="Share_update" class="com.cn.struts2.action.ShareOperationAction" method="Share_update">
+    		
+    	</action>
+    	<action name="TestResult_update" class="com.cn.struts2.action.TestResultAction" method="TestResult_update">
+    		
+    	</action>
+    	<action name="TestResult_show" class="com.cn.struts2.action.TestResultAction" method="TestResult_show">
+    		
+    	</action>
+    	<action name="user_show" class="com.cn.struts2.action.UserOperationAction" method="user_show">
+    		
+    	</action>
+    	<action name="user_update" class="com.cn.struts2.action.UserOperationAction" method="user_update">
+    		
+    	</action>
+    	
+    	
     	
 
     </package>

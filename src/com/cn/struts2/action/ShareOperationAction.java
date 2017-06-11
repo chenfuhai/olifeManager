@@ -58,6 +58,7 @@ public class ShareOperationAction extends ActionSupport{
 			}
 			String data = gson.toJson(shareData);
 			try {
+				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().println(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

@@ -26,14 +26,14 @@ public class GoodsOperationAction extends ActionSupport{
 	HttpServletRequest request = ServletActionContext.getRequest();
 	HttpServletResponse response = ServletActionContext.getResponse();
 	private String sql;
-	private String goodsId,goodsName,goodsIconUrl,goodsDesc;
+	private String goodsId,goodsName,goodsIconUrl,goodsDesc,goodsUrl;
 	private ArrayList<Goods> goodsData;
 	
 	public String goods_insert(){
 		goodsName = request.getParameter("");
 		goodsIconUrl = request.getParameter("");
 		goodsDesc = request.getParameter("");
-		
+		goodsUrl = request.getParameter("");
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		
@@ -48,6 +48,10 @@ public class GoodsOperationAction extends ActionSupport{
 		if (goodsDesc != null) {
 			sb1.append("gooddesc").append(",");
 			sb2.append("'" + goodsDesc + "'").append(",");
+		}
+		if (goodsUrl != null) {
+			sb1.append("goodUrl").append(",");
+			sb2.append("'" + goodsUrl + "'").append(",");
 		}
 		
 		String result1 = sb1.toString().substring(0, sb1.toString().length()-1);
@@ -83,6 +87,7 @@ public class GoodsOperationAction extends ActionSupport{
 				goods.setName(result.getString("goodname"));
 				goods.setDesc(result.getString("gooddesc"));
 				goods.setIconUrl(result.getString("iconUrl"));
+				goods.setUrl(result.getString("goodUrl"));
 				goodsData.add(goods);
 			}
 			//将数据集合发送到jsp页面
@@ -109,12 +114,15 @@ public class GoodsOperationAction extends ActionSupport{
 		goodsName = request.getParameter("");
 		goodsIconUrl = request.getParameter("");
 		goodsDesc = request.getParameter("");
+		goodsUrl = request.getParameter("");
 		String sb1 = new String();
 		String sb2 = new String();
 		String sb3 = new String();
 		String sb4 = new String();
 		String sb5 = new String();
 		String sb6 = new String();
+		String sb7 = new String();
+		String sb8 = new String();
 		
 		if(goodsName!=null){
 			sb1="goodname=";
@@ -128,7 +136,11 @@ public class GoodsOperationAction extends ActionSupport{
 			sb5="gooddesc=";
 			sb6="'" + goodsDesc + "',";
 		}
-		String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+"";
+		if(goodsUrl!=null){
+			sb7="goodUrl=";
+			sb8="'" + goodsUrl + "',";
+		}
+		String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+"";
 		String result = sresult.substring(0, sresult.length()-1);
 		sql="select * from goods where goodname = '"+goodsName+"'";
 		ResultSet result1 = new DBOpreate().executeQuery(sql);
