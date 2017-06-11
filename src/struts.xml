@@ -70,9 +70,15 @@
 
         </action>
         <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">
-             
-
+            
         </action>
+        
+        
+     <!-- ======================================后台管理action====================================== -->
+        <action name="login" class="com.cn.struts2.action.LoginAction">
+    		<result name="success">/main.jsp</result>
+    		<result name="failed">/forgot_password.jsp</result>
+    	</action>
     </package>
     <!-- 待完善 -->
     <package name="com.cn.struts2.action" namespace="/" extends="struts-default">
@@ -82,8 +88,7 @@
     	</action>
     	<action name="DiscOperationAction" class="com.cn.struts2.action.GoodsOperationAction">
     	</action>
-    	<action name="DiscOperationAction" class="com.cn.struts2.action.LoginAction">
-    	</action>
+    	
     	<action name="DiscOperationAction" class="com.cn.struts2.action.ShareOperationAction">
     	</action>
     	<action name="DiscOperationAction" class="com.cn.struts2.action.TestResultAction">
