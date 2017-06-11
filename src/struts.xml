@@ -71,8 +71,8 @@
         </action>
         <action name="ShareMessage_queryByLaInAction" class="android.ShareMessage_queryByLaInAction">
              
-
         </action>
+        
     </package>
     <!-- 待完善 -->
     <package name="com.cn.struts2.action" namespace="/" extends="struts-default">

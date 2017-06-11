@@ -1,6 +1,6 @@
 package com.cn.struts2.action;
 
-import java.sql.ResultSet;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,27 +11,20 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import utils.DBOpreate;
 
-public class FeedbackOperationAction extends ActionSupport{
+public class ForgotPwdAction extends ActionSupport{
 	HttpServletRequest request = ServletActionContext.getRequest();
 	HttpServletResponse response = ServletActionContext.getResponse();
 	private String sql;
-    
-	
-	public String user_show(){
-		sql="select * from feedback";
-		ResultSet flag =  new DBOpreate().executeQuery(sql);
-		if(flag != null){
-		
-		}
-		return null;
-	}
-	
-	public String user_dalete(){
-		sql="delete from feedback where feedbackid = ";
+	public String execute(){
+		String username = request.getParameter("");
+		String userpwd = request.getParameter("");
+		sql="select * from ouser where ='"+username+"' and userpwd = '"+userpwd+"'";
 		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
-			
+			return null;
+		}else{
+			return null;
 		}
-		return null;
 	}
+	
 }

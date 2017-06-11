@@ -1,35 +1,74 @@
 package com.cn.struts2.action;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import entity.OnekeySharedDisc;
 import utils.DBOpreate;
 
 public class DiscOperationAction extends ActionSupport{
-	private String discId;
-	private String sharedMessageId; 
-    private String userId;
-    private String userImgUrl;
-    private String username;
-    private Boolean usersex;
-    private String userage;   
-    private String message;
-    private String sql;
-    
+	HttpServletRequest request = ServletActionContext.getRequest();
+	HttpServletResponse response = ServletActionContext.getResponse();
+	private String sql;
+    ArrayList<OnekeySharedDisc> discs;
  
 	public String Disc_show(){
 		sql="select * from onekeySharedDisc";
-		ResultSet flag =  new DBOpreate().executeQuery(sql);
-		if(flag != null){
+		ResultSet result =  new DBOpreate().executeQuery(sql);
+		try {
+			while(result.next()){
+				OnekeySharedDisc disc = new OnekeySharedDisc();
+				disc.setId(result.getInt("id"));
+				disc.setMessage(result.getString("discmessage"));
+				disc.setSharedMessageId(result.getInt("sharedMessageId"));
+				disc.setUserage(result.getString("userage"));
+				disc.setUserId(result.getString("userid"));
+				disc.setUserImgUrl(result.getString("userimgUrl"));
+				disc.setUsername(result.getString("username"));
+				discs.add(disc);
+			}
+			ActionContext.getContext().put("dis", discs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null; 
 	}
 	
 	public String Disc_dalete(){
-		sql="delete from onekeySharedDisc where discId = '" + discId + "'";
+		int discId = Integer.parseInt(request.getParameter(""));
+		sql="delete from onekeySharedDisc where id = '" + discId + "'";
 		boolean flag =  new DBOpreate().execute(sql);
 		if(flag == true){
+			sql="select * from onekeySharedDisc";
+			ResultSet result =  new DBOpreate().executeQuery(sql);
+			try {
+				while(result.next()){
+					OnekeySharedDisc disc = new OnekeySharedDisc();
+					disc.setId(result.getInt("id"));
+					disc.setMessage(result.getString("discmessage"));
+					disc.setSharedMessageId(result.getInt("sharedMessageId"));
+					disc.setUserage(result.getString("userage"));
+					disc.setUserId(result.getString("userid"));
+					disc.setUserImgUrl(result.getString("userimgUrl"));
+					disc.setUsername(result.getString("username"));
+					discs.add(disc);
+				}
+				ActionContext.getContext().put("dis", discs);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
 		}
 		return null;
 	}
