@@ -84,11 +84,11 @@
     		
     	</action>
 		
-    	<action name="goods_insert" class="com.cn.struts2.action.GoodsOperationAction" method="goods_insert()">
-    		<result name="success">/main.jsp</result>
+    	<action name="goods_insert" class="com.cn.struts2.action.GoodsOperationAction" method="goods_insert">
+    	
     	</action>
-    	<action name="goods_show" class="com.cn.struts2.action.GoodsOperationAction" method="goods_show()">
-    		<result name="success">/main.jsp</result>
+    	<action name="goods_show" class="com.cn.struts2.action.GoodsOperationAction" method="goods_show">
+    		
     	</action>
     	
 

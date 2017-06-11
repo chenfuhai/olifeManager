@@ -86,7 +86,9 @@ public class GoodsOperationAction extends ActionSupport{
 			//将数据集合发送到jsp页面
 			
 			String data = gson.toJson(goodsData);
+			
 			try {
+				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().println(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
