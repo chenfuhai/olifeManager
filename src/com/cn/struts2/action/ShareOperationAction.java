@@ -27,7 +27,7 @@ public class ShareOperationAction extends ActionSupport{
 	
 	public String Share_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from onekeySharedMessage";
+		sql="select * from onekeySharedMessage order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<OnekeySharedMessage> shareData = new ArrayList<>();
 		try {

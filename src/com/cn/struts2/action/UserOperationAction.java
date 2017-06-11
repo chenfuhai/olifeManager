@@ -24,7 +24,7 @@ public class UserOperationAction extends ActionSupport{
 	
 	public String user_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from ouser";
+		sql="select * from ouser order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<User> userData = new ArrayList<>();
 		try {

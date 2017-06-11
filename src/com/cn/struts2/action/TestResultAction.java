@@ -120,7 +120,7 @@ public class TestResultAction extends ActionSupport{
 	}
 	public String TestResult_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from onekeyResultRecord";
+		sql="select * from onekeyResultRecord order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<OnekeyResultRecord> recordData = new ArrayList<>();
 		try {
