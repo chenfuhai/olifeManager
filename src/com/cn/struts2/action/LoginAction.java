@@ -2,7 +2,10 @@ package com.cn.struts2.action;
 
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
+
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +28,7 @@ public class LoginAction extends ActionSupport{
 
 		String username = request.getParameter("username");
 		String userpwd = request.getParameter("password");
+
 		if(username==null || username.equals("")){
 			return "failed";
 		}else if(userpwd == null || userpwd.equals("")){
@@ -47,6 +51,10 @@ public class LoginAction extends ActionSupport{
 			e.printStackTrace();
 		}
 		return "failed";
+
+		
+	
+
 	}
 	
 }
