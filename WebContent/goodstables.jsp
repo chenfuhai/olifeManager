@@ -141,7 +141,22 @@
    	 </div>
  
 
-
+<!-- ===============确认框=========== -->
+<div class="modal fade" id="comfirmModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
+	<div class="modal-dialog" style="width: 20%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="comfirmModalLable">提示</h4>
+			</div>
+			<div class="modal-body" id="confirmModalText">这是个确认框</div>
+            <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="confirmModalConfirmBtn" data-dismiss="modal">确认</button>
+            </div>
+		</div>
+	</div>
+</div>
 <!-- ===============警告框=========== -->
 <div class="modal fade" id="waringModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
 	<div class="modal-dialog" style="width: 20%;">

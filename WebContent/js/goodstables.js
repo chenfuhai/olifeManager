@@ -247,68 +247,47 @@ var ButtonInit = function () {
         });
         
         $("#btn_delete").click(function () {
-            var arrselections = $("#tb_departments").bootstrapTable('getSelections');
+          
             if (arrselections.length <= 0) {
             	$("#waringModalText").html('请选择一项数据');
             	$("#waringModal").modal();
                 return;
             }
-
-            Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
-                if (!e) {
-                    return;
-                }
-                $.ajax({
-                    type: "post",
-                    url: "/Home/Delete",
-                    data: { "": JSON.stringify(arrselections) },
-                    success: function (data, status) {
-                        if (status == "success") {
-                            toastr.success('提交数据成功');
-                            $("#tb_departments").bootstrapTable('refresh');
-                        }
-                    },
-                    error: function () {
-                        toastr.error('Error');
-                    },
-                    complete: function () {
-                    }
-                });
-            });
+            $("#confirmModalText").html('您确认删除这一项吗？此操作不可恢复');
+        	$("#confirmModal").modal();
+           
         });
-
-        $("#btn_submit").click(function () {
-            postdata.DEPARTMENT_NAME = $("#txt_departmentname").val();
-            postdata.PARENT_ID = $("#txt_parentdepartment").val();
-            postdata.DEPARTMENT_LEVEL = $("#txt_departmentlevel").val();
-            postdata.STATUS = $("#txt_statu").val();
-            $.ajax({
-                type: "post",
-                url: "/Home/GetEdit",
-                data: { "": JSON.stringify(postdata) },
+        
+        $("#confirmModalConfirmBtn").click(function (){
+        	var arrselections = $("#tb_departments").bootstrapTable('getSelections');
+        	var id=arrselections[0].id;
+        	$.ajax({
+                type: "POST",
+                url: "/olifeManager/goods_delete.action",
+                data: "{'id':'"+id+"'}",
+                contentType: "application/json",
                 success: function (data, status) {
-                    if (status == "success") {
-                        toastr.success('提交数据成功');
-                        $("#tb_departments").bootstrapTable('refresh');
+                
+                	if (data == "success") {
+                		$("#comfirmModal").modal('hide');
+                		 $("#waringModalText").html('更新成功');
+                		 $("#waringModal").modal();
+                    }else{
+                    	alert("更新失败");
                     }
+                    $("#tb_departments").bootstrapTable('refresh');
                 },
                 error: function () {
-                    toastr.error('Error');
-                },
-                complete: function () {
-
-               }
+                	alert("发生错误");
+                }
 
             });
+        	
+        	
+        	
         });
 
-        $("#btn_query").click(function () {
-           $("#tb_departments").bootstrapTable('refresh');
-        });
-    	
-    	
-    	
-    	
+
     	
     };
 

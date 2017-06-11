@@ -116,7 +116,7 @@ public class GoodsOperationAction extends ActionSupport{
 				goods.setUrl(result.getString("goodUrl"));
 				goodsData.add(goods);
 			}
-			//将数据集合发送到jsp页面
+			//灏嗘暟鎹泦鍚堝彂閫佸埌jsp椤甸潰
 			
 			String data = gson.toJson(goodsData);
 			
@@ -131,6 +131,50 @@ public class GoodsOperationAction extends ActionSupport{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
+	}
+	public String goods_delete(){
+		String msg = null;
+		try {
+			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		Goods good = gson.fromJson(msg, Goods.class);
+		System.out.println(msg);
+		if(good.getId()==0 || good.getId()==-1){
+			//do not execute the sql
+			response.setContentType("text/html;charset=UTF-8");
+			try {
+				response.getWriter().println("failed");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}{
+			//safe
+			String sql = "delete table goods where id ="+good.getId();
+			boolean flag= new DBOpreate().execute(sql);
+			if(flag){
+				try {
+					response.getWriter().println("success");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					response.getWriter().println("failed");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
 		return null;
 	}
 	
@@ -178,7 +222,7 @@ public class GoodsOperationAction extends ActionSupport{
 		try {
 
 			if(!result1.next()){
-				//不已经存在该名称,不能插入
+				//涓嶅凡缁忓瓨鍦ㄨ鍚嶇О,涓嶈兘鎻掑叆
 				response.getWriter().print("failed");
 				return null;
 			}else{
