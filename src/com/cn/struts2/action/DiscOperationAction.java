@@ -44,32 +44,5 @@ public class DiscOperationAction extends ActionSupport{
 		return null; 
 	}
 	
-	public String Disc_dalete(){
-		int discId = Integer.parseInt(request.getParameter(""));
-		sql="delete from onekeySharedDisc where id = '" + discId + "'";
-		boolean flag =  new DBOpreate().execute(sql);
-		if(flag == true){
-			sql="select * from onekeySharedDisc";
-			ResultSet result =  new DBOpreate().executeQuery(sql);
-			try {
-				while(result.next()){
-					OnekeySharedDisc disc = new OnekeySharedDisc();
-					disc.setId(result.getInt("id"));
-					disc.setMessage(result.getString("discmessage"));
-					disc.setSharedMessageId(result.getInt("sharedMessageId"));
-					disc.setUserage(result.getString("userage"));
-					disc.setUserId(result.getString("userid"));
-					disc.setUserImgUrl(result.getString("userimgUrl"));
-					disc.setUsername(result.getString("username"));
-					discs.add(disc);
-				}
-				ActionContext.getContext().put("dis", discs);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-		return null;
-	}
+	
 }

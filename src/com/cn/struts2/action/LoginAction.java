@@ -1,6 +1,7 @@
 package com.cn.struts2.action;
 
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,14 +22,14 @@ public class LoginAction extends ActionSupport{
 
 	public String execute(){
 
-		String username = request.getParameter("");
-		String userpwd = request.getParameter("");
-		sql="select * from ouser where ='"+username+"' and userpwd = '"+userpwd+"'";
-		boolean flag =  new DBOpreate().execute(sql);
-		if(flag == true){
+		String username = request.getParameter("username");
+		String userpwd = request.getParameter("password");
+		sql="select * from adminUser where ='"+username+"' and password = '"+userpwd+"'";
+		ResultSet flag =  new DBOpreate().executeQuery(sql);
+		if(flag != null){
 			return SUCCESS;
 		}else{
-			return null;
+			return ERROR;
 		}
 	}
 	
