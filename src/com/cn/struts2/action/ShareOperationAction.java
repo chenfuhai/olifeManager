@@ -1,5 +1,6 @@
 package com.cn.struts2.action;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
@@ -23,6 +26,7 @@ public class ShareOperationAction extends ActionSupport{
 	private String sql;
 	
 	public String Share_show(){
+		Gson gson = new GsonBuilder().create();
 		sql="select * from onekeySharedMessage";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<OnekeySharedMessage> shareData = new ArrayList<>();
@@ -52,7 +56,13 @@ public class ShareOperationAction extends ActionSupport{
 				
 				shareData.add(message);
 			}
-			ActionContext.getContext().put("shareData",shareData);
+			String data = gson.toJson(shareData);
+			try {
+				response.getWriter().println(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

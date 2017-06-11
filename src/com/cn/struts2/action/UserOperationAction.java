@@ -1,5 +1,6 @@
 package com.cn.struts2.action;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -20,6 +23,7 @@ public class UserOperationAction extends ActionSupport{
 	private String sql;
 	
 	public String user_show(){
+		Gson gson = new GsonBuilder().create();
 		sql="select * from ouser";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<User> userData = new ArrayList<>();
@@ -37,7 +41,13 @@ public class UserOperationAction extends ActionSupport{
 				user.setBrithday(result.getString("brithday"));
 				userData.add(user);
 			}
-			ActionContext.getContext().put("userData", userData);
+			String data = gson.toJson(userData);
+			try {
+				response.getWriter().println(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

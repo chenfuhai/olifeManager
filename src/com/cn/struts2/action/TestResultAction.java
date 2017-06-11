@@ -1,5 +1,6 @@
 package com.cn.struts2.action;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -111,6 +114,7 @@ public class TestResultAction extends ActionSupport{
 		return null;
 	}
 	public String TestResult_show(){
+		Gson gson = new GsonBuilder().create();
 		sql="select * from onekeyResultRecord";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<OnekeyResultRecord> recordData = new ArrayList<>();
@@ -133,7 +137,13 @@ public class TestResultAction extends ActionSupport{
 				record.setDriverId(result.getString("driverId"));
 				recordData.add(record);
 				}
-			ActionContext.getContext().put("recordData", recordData);
+			String data = gson.toJson(recordData);
+			try {
+				response.getWriter().println(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

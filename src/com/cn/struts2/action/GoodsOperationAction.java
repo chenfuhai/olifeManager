@@ -1,5 +1,6 @@
 package com.cn.struts2.action;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -67,6 +70,7 @@ public class GoodsOperationAction extends ActionSupport{
 	}
 	
 	public String goods_show(){
+		Gson gson = new GsonBuilder().create();
 		sql="select * from goods";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		goodsData = new ArrayList<>();
@@ -80,7 +84,14 @@ public class GoodsOperationAction extends ActionSupport{
 				goodsData.add(goods);
 			}
 			//将数据集合发送到jsp页面
-			ActionContext.getContext().put("goodsData", goodsData);
+			
+			String data = gson.toJson(goodsData);
+			try {
+				response.getWriter().println(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
