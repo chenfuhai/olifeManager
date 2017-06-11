@@ -57,13 +57,7 @@ public class Goods {
         this.desc = desc;
     }
 
-    public String getIconUrl() {
-        return iconurl;
-    }
-
-    public void setIconUrl(String iconurl) {
-        this.iconurl = iconurl;
-    }
+  
 
 	
 }

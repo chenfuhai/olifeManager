@@ -26,7 +26,7 @@ var TableInit = function () {
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）
-            sortable: false,                     //是否启用排序
+            sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             queryParams: oTableInit.queryParams,//传递参数（*）
             sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
@@ -94,18 +94,47 @@ var ButtonInit = function () {
     	//先上传文件 再上传其他内容 并把文件的地址包括在里面
     	$("#addModalSubmitBtn").click(function (){
 
+    		var f=$('#goodfile_add').val();
+    		if (f=="") {
+    			alert("请选择一个配图文件后再上传");
+             	return;
+			}
+    		
     		 $.ajaxFileUpload({
-    		        url:'/LWD/test3.action',//上传图片要提交到的action
+    		        url:'/olifeManager/UploadFile.action',//上传图片要提交到的action
     		        secureuri:false,//是否用安全提交，默认为false
-    		        fileElementId:'exampleInputFile',//file选择文件的框的id
+    		        fileElementId:'goodfile_add',//file选择文件的框的id
     		        dataType:'json',//返回的是JSON数据
     		        success: function (data){
-    		           alert(data.result);
+    		           //alert(data.result);
     		           //接下去上传其他信息 以JSON形式 依照类的内容来传方便Gson解析
-    		           
-    		           
-    		           
-    		           
+    		           var name = $("#goodName_add").val();
+    		           var imgUrl = data.result;
+    		           var url = $("#goodUrl_add").val();
+    		           var desc = $("#goodDesc_add").text();
+    		           //alert(name+"  "+imgUrl+"  "+url+"  "+desc);
+    		           $.ajax({
+    		                type: "POST",
+    		                url: "/olifeManager/goods_insert.action",
+    		                data: "{'iconurl':'"+imgUrl+"','name':'"+name+"','desc':'"+desc+"','url':'"+url+"'}",
+    		                contentType: "application/json",
+    		                success: function (data, status) {
+		                    
+    		                	if (data == "success") {
+    		                		$("#addModal").modal('hide');
+    		                		 $("#waringModalText").html('添加成功');
+    		                		 $("#waringModal").modal();
+    		                    }else{
+    		                    	alert("添加失败，可能已存在相同商品");
+    		                    }
+		                        $("#tb_departments").bootstrapTable('refresh');
+    		                },
+    		                error: function () {
+    		                	alert("发生错误");
+    		                }
+
+    		            });
+       
     		        },
     		 		error:function (data){
     		 			alert(data+"error");
@@ -134,7 +163,7 @@ var ButtonInit = function () {
                 return;
             }
 //            alert(arrselections[0].Name);
-            $("#goodID_edit").val(arrselections[0].id);
+            $("#goodId_edit").val(arrselections[0].id);
             $("#goodName_edit").val(arrselections[0].name);
             $("#goodUrl_edit").val(arrselections[0].url);
             $("#goodfile_edit").val();
@@ -143,10 +172,85 @@ var ButtonInit = function () {
             $('#editModal').modal();
         });
 
+        
+        $("#editModalSubmitBtn").click(function (){
+        	var name =  $("#goodName_edit").val();
+            var url = $("#goodUrl_edit").val();
+            var desc = $("#goodDesc_edit").text();
+        	if (name=="" || url =="" || desc=="") {
+				alert("请填写完整数据");
+				return;
+			}
+        	var file=$('#goodfile_edit').val();
+        	var id = $('#goodId_edit').val();
+        	if (file=="") {
+        		//文件为空就直接上传 忽略文件
+        		$.ajax({
+                    type: "POST",
+                    url: "/olifeManager/goods_update.action",
+                    data: "{'id':'"+id+"','name':'"+name+"','desc':'"+desc+"','url':'"+url+"'}",
+                    contentType: "application/json",
+                    success: function (data, status) {
+                    
+                    	if (data == "success") {
+                    		$("#addModal").modal('hide');
+                    		 $("#waringModalText").html('更新成功');
+                    		 $("#waringModal").modal();
+                        }else{
+                        	alert("更新失败");
+                        }
+                        $("#tb_departments").bootstrapTable('refresh');
+                    },
+                    error: function () {
+                    	alert("发生错误");
+                    }
+
+                });
+			}else{
+				//文件不为空就先上传文件 再更新
+				 $.ajaxFileUpload({
+	    		        url:'/olifeManager/UploadFile.action',//上传图片要提交到的action
+	    		        secureuri:false,//是否用安全提交，默认为false
+	    		        fileElementId:'goodfile_edit',//file选择文件的框的id
+	    		        dataType:'json',//返回的是JSON数据
+	    		        success: function (data){
+	    		        	$.ajax({
+	    	                    type: "POST",
+	    	                    url: "/olifeManager/goods_update.action",
+	    	                    data: "{'id':'"+id+"','iconurl':'"+data.result+"','name':'"+name+"','desc':'"+desc+"','url':'"+url+"'}",
+	    	                    contentType: "application/json",
+	    	                    success: function (data, status) {
+	    	                    
+	    	                    	if (data == "success") {
+	    	                    		$("#editModal").modal('hide');
+	    	                    		 $("#waringModalText").html('更新成功');
+	    	                    		 $("#waringModal").modal();
+	    	                        }else{
+	    	                        	alert("更新失败");
+	    	                        }
+	    	                        $("#tb_departments").bootstrapTable('refresh');
+	    	                    },
+	    	                    error: function () {
+	    	                    	alert("发生错误");
+	    	                    }
+
+	    	                });
+	    		        },
+	    		 		error:function (data){
+	    		 			alert(data+"error");
+	    		 		}
+	    		        
+	    		    }); 				
+			}//else 
+	
+        	
+        });
+        
         $("#btn_delete").click(function () {
             var arrselections = $("#tb_departments").bootstrapTable('getSelections');
             if (arrselections.length <= 0) {
-                toastr.warning('请选择有效数据');
+            	$("#waringModalText").html('请选择一项数据');
+            	$("#waringModal").modal();
                 return;
             }
 

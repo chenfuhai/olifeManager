@@ -12,11 +12,11 @@ import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import entity.Goods;
 import utils.DBOpreate;
+import utils.NetUtils;
 
 public class GoodsOperationAction extends ActionSupport{
 	/**
@@ -26,58 +26,84 @@ public class GoodsOperationAction extends ActionSupport{
 	HttpServletRequest request = ServletActionContext.getRequest();
 	HttpServletResponse response = ServletActionContext.getResponse();
 	private String sql;
-	private String goodsId,goodsName,goodsIconUrl,goodsDesc,goodsUrl;
+	
 	private ArrayList<Goods> goodsData;
 	
 	public String goods_insert(){
-		goodsName = request.getParameter("");
-		goodsIconUrl = request.getParameter("");
-		goodsDesc = request.getParameter("");
-		goodsUrl = request.getParameter("");
+		String msg = null;
+		try {
+			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		Goods good = gson.fromJson(msg, Goods.class);
+		System.out.println(msg);
+		
+		
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		
-		if (goodsName != null) {
+		if (good.getName() != null) {
 			sb1.append("goodname").append(",");
-			sb2.append("'" + goodsName + "'").append(",");
+			sb2.append("'" + good.getName() + "'").append(",");
 		}
-		if (goodsIconUrl != null) {
+		if (good.getIconurl() != null) {
 			sb1.append("iconUrl").append(",");
-			sb2.append("'" + goodsIconUrl + "'").append(",");
+			sb2.append("'" + good.getIconurl() + "'").append(",");
 		}
-		if (goodsDesc != null) {
+		if (good.getDesc() != null) {
 			sb1.append("gooddesc").append(",");
-			sb2.append("'" + goodsDesc + "'").append(",");
+			sb2.append("'" + good.getDesc() + "'").append(",");
 		}
-		if (goodsUrl != null) {
+		if (good.getUrl() != null) {
 			sb1.append("goodUrl").append(",");
-			sb2.append("'" + goodsUrl + "'").append(",");
+			sb2.append("'" + good.getUrl() + "'").append(",");
 		}
 		
 		String result1 = sb1.toString().substring(0, sb1.toString().length()-1);
 		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
 		
-		sql="select * from goods where goodname = '"+goodsName+"'";
+		sql="select * from goods where goodname = '"+good.getName()+"'"+"order by id desc";
 		
-		boolean flag1 = new DBOpreate().equals(sql);
-		if(flag1 == true){
-			//已经存在
-			return ERROR;
-			
-		}else{
-			sql="insert into goods("+result1+") values("+result2+")";
-			boolean flag =  new DBOpreate().execute(sql);
-			if(flag == true){
-				//成功执行操作
-				return SUCCESS;
+		
+		ResultSet resultSet=new DBOpreate().executeQuery(sql);
+		
+		try {
+			if(resultSet.next()){
+				try {
+					response.getWriter().print("failed");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return null;
+				
+			}else{
+				sql="insert into goods("+result1+") values("+result2+")";
+				boolean flag =  new DBOpreate().execute(sql);
+				if(flag == true){
+					try {
+						response.getWriter().print("success");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return null;
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}
 	
 	public String goods_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from goods";
+		sql="select * from goods order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		goodsData = new ArrayList<>();
 		try {
@@ -86,7 +112,7 @@ public class GoodsOperationAction extends ActionSupport{
 				goods.setId(result.getInt("id"));
 				goods.setName(result.getString("goodname"));
 				goods.setDesc(result.getString("gooddesc"));
-				goods.setIconUrl(result.getString("iconUrl"));
+				goods.setIconurl(result.getString("iconUrl"));
 				goods.setUrl(result.getString("goodUrl"));
 				goodsData.add(goods);
 			}
@@ -109,12 +135,17 @@ public class GoodsOperationAction extends ActionSupport{
 	}
 	
 	public String goods_update(){
-		//goodsName是修改名称后的值
-		goodsId = request.getParameter("");
-		goodsName = request.getParameter("");
-		goodsIconUrl = request.getParameter("");
-		goodsDesc = request.getParameter("");
-		goodsUrl = request.getParameter("");
+		String msg = null;
+		try {
+			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		Goods good = gson.fromJson(msg, Goods.class);
+		System.out.println(msg);
+		
 		String sb1 = new String();
 		String sb2 = new String();
 		String sb3 = new String();
@@ -124,35 +155,45 @@ public class GoodsOperationAction extends ActionSupport{
 		String sb7 = new String();
 		String sb8 = new String();
 		
-		if(goodsName!=null){
+		if(good.getName()!=null){
 			sb1="goodname=";
-			sb2="'" + goodsName + "',";
+			sb2="'" + good.getName() + "',";
 		}
-		if(goodsIconUrl!=null){
+		if(good.getIconurl()!=null){
 			sb3="iconUrl=";
-			sb4="'" + goodsIconUrl + "',";
+			sb4="'" + good.getIconurl() + "',";
 		}
-		if(goodsDesc!=null){
+		if(good.getDesc()!=null){
 			sb5="gooddesc=";
-			sb6="'" + goodsDesc + "',";
+			sb6="'" + good.getDesc() + "',";
 		}
-		if(goodsUrl!=null){
+		if(good.getUrl()!=null){
 			sb7="goodUrl=";
-			sb8="'" + goodsUrl + "',";
+			sb8="'" + good.getUrl() + "',";
 		}
 		String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+"";
 		String result = sresult.substring(0, sresult.length()-1);
-		sql="select * from goods where goodname = '"+goodsName+"'";
+		sql="select * from goods where id = '"+good.getId()+"'";
 		ResultSet result1 = new DBOpreate().executeQuery(sql);
-		if(result1 == null){
-			//已经存在该名称,执行具体操作
-			return ERROR;
-		}else{
-			sql="update goods set "+result+" where id = "+goodsId;
-			boolean flag2 =  new DBOpreate().execute(sql);
-			if(flag2 == true){
-				return SUCCESS;
+		try {
+			if(!result1.next()){
+				//不已经存在该名称,不能插入
+				response.getWriter().print("failed");
+				return null;
+			}else{
+				sql="update goods set "+result+" where id = "+good.getId();
+				boolean flag2 =  new DBOpreate().execute(sql);
+				if(flag2 == true){
+					response.getWriter().print("success");
+					return null;
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return null;

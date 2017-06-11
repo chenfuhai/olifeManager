@@ -143,7 +143,7 @@
 
 
 <!-- ===============警告框=========== -->
-<div class="modal fade" id="waringModal" tabindex="-1" role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
+<div class="modal fade" id="waringModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
 	<div class="modal-dialog" style="width: 20%;">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -205,7 +205,7 @@
 				<form id="editForm" >
 					<div class="form-group">
 					
-					 <input type="hidden" class="form-control" id="goodID_edit" >
+					 <input type="hidden" class="form-control" id="goodId_edit" >
 					</div>
 					<div class="form-group">
 					 <label for="goodName_edit">商品名称</label>
@@ -228,7 +228,7 @@
 			</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="addModalSubmitBtn">确认更改</button>
+                <button type="button" class="btn btn-primary" id="editModalSubmitBtn">确认更改</button>
             </div>
 		</div>
 	</div>
@@ -237,4 +237,5 @@
     
   
   </body>
+ 
 </html>

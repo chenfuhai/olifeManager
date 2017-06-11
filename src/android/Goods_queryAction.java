@@ -43,7 +43,7 @@ public class Goods_queryAction extends ActionSupport {
 				good.setId(result.getInt("id"));
 				good.setDesc(result.getString("gooddesc"));
 				good.setName(result.getString("goodname"));
-				good.setIconUrl(result.getString("iconUrl"));
+				good.setIconurl(result.getString("iconUrl"));
 				goods.add(good);
 			}
 		} catch (SQLException e1) {

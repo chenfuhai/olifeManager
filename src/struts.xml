@@ -90,7 +90,7 @@
     	<action name="goods_show" class="com.cn.struts2.action.GoodsOperationAction" method="goods_show">
     		
     	</action>
-    	<action name="UploadFile" class="com.cn.struts2.action.UploadFile">
+    	<action name="UploadFile" class="com.cn.struts2.action.UploadFile"  method="upload">
         	<interceptor-ref name="fileUpload">
   				<param name="maximumSize">524288000</param>
   			</interceptor-ref>
