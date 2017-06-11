@@ -119,18 +119,23 @@ public class UserOperationAction extends ActionSupport{
 		
 		sql = "select * from ouser where username = "+username;
 		ResultSet flag = new DBOpreate().executeQuery(sql);
-		if(flag == null){
-			//存在当前用户名
-			return ERROR;
-		}else{
-			String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+""+sb9+""+sb10+""+sb11+""+sb12+""+sb13+""+sb14+""+sb15+""+sb16;
-			String result = sresult.substring(0, sresult.length()-1);
-			sql = "update ouser set "+result+" where id = "+userId;
-			System.out.println(sql);
-			boolean flag2 =  new DBOpreate().execute(sql);
-			if(flag2 == true){
-				return SUCCESS;
+		try {
+			if(flag.next()){
+				//存在当前用户名
+				return ERROR;
+			}else{
+				String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+""+sb9+""+sb10+""+sb11+""+sb12+""+sb13+""+sb14+""+sb15+""+sb16;
+				String result = sresult.substring(0, sresult.length()-1);
+				sql = "update ouser set "+result+" where id = "+userId;
+				System.out.println(sql);
+				ResultSet flag2 =  new DBOpreate().executeQuery(sql);
+				if(flag2.next()){
+					return SUCCESS;
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return null;

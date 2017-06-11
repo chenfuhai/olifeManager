@@ -144,15 +144,20 @@ public class GoodsOperationAction extends ActionSupport{
 		String result = sresult.substring(0, sresult.length()-1);
 		sql="select * from goods where goodname = '"+goodsName+"'";
 		ResultSet result1 = new DBOpreate().executeQuery(sql);
-		if(result1 == null){
-			//已经存在该名称,执行具体操作
-			return ERROR;
-		}else{
-			sql="update goods set "+result+" where id = "+goodsId;
-			boolean flag2 =  new DBOpreate().execute(sql);
-			if(flag2 == true){
-				return SUCCESS;
+		try {
+			if(result1.next()){
+				//已经存在该名称,执行具体操作
+				return ERROR;
+			}else{
+				sql="update goods set "+result+" where id = "+goodsId;
+				boolean flag2 =  new DBOpreate().execute(sql);
+				if(flag2 == true){
+					return SUCCESS;
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return null;
