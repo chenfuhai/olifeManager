@@ -75,8 +75,12 @@
         
      <!-- ======================================后台管理action====================================== -->
         <action name="login" class="com.cn.struts2.action.LoginAction">
-    		<result name="success">/main.jsp</result>
-    		<result name="failed">/forgot_password.jsp</result>
+    		<result name="success" type="redirect">/main.jsp</result>
+    		<result name="failed" type="redirect">/index.jsp</result>
+    	</action>
+    	 <action name="logout" class="com.cn.struts2.action.LogoutAction">
+    		<result name="success" type="redirect">/index.jsp</result>
+    		
     	</action>
     </package>
     <!-- 待完善 -->

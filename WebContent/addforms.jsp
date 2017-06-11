@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class='no-js' lang='en'>
   <head>
@@ -13,6 +15,9 @@
     <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
     
   </head>
+   <c:if test="${sessionScope.userName==null}">
+  <c:redirect url="index.jsp"></c:redirect>
+  </c:if>
   <body class='main page'>
     <!-- Navbar -->
     <div class='navbar navbar-default' id='navbar'>
@@ -31,14 +36,15 @@
         <li class='dropdown user'>
           <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
             <i class='icon-user'></i>
-            <strong>John DOE</strong>
+           <strong>${userName}</strong>
             <img class="img-rounded" src="http://placehold.it/20x20/ccc/777" />
             <b class='caret'></b>
           </a>
           <ul class='dropdown-menu'>
             
             <li>
-              <a href="/">Sign out</a>
+            <a href="logout.action">Sign out</a>
+               
             </li>
           </ul>
         </li>
@@ -53,31 +59,7 @@
             <i class='icon-dashboard'></i>
             <a href="main.jsp">主界面</a>
           </li>
-         
-          <li class='launcher'>
-            <i class='icon-table'></i>
-            <a href="usertables.jsp">用户管理</a>
-          </li>
-          <li class='launcher'>
-            <i class='icon-table'></i>
-            <a href="goodstables.jsp">商品管理</a>
-          </li>
-          <li class='launcher'>
-            <i class='icon-table'></i>
-            <a href="sharedtables.jsp">分享管理</a>
-          </li>
-          <li class='launcher'>
-            <i class='icon-table'></i>
-            <a href="disctables.jsp">评论管理</a>
-          </li>
-          <li class='launcher'>
-            <i class='icon-table'></i>
-            <a href="feedbacktables.jsp">查看反馈</a>
-          </li>
-           <li class='launcher'>
-            <i class='icon-file-text-alt'></i>
-            <a href="editforms.jsp">编辑页</a>
-          </li>
+
           <li class='active launcher'>
             <i class='icon-file-text-alt'></i>
             <a href="addforms.jsp">添加页</a>
