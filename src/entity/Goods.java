@@ -12,10 +12,27 @@ public class Goods {
     private String iconurl;
     private String name;
     private String desc;
+    private String url;
     
-    
-    
-    
+
+
+    public String getIconurl() {
+		return iconurl;
+	}
+
+	public void setIconurl(String iconurl) {
+		this.iconurl = iconurl;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
 	public int getId() {
 		return id;
 	}

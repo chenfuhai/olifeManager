@@ -3,6 +3,10 @@ package com.cn.struts2.action;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
+import java.sql.SQLException;
+
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,13 +28,33 @@ public class LoginAction extends ActionSupport{
 
 		String username = request.getParameter("username");
 		String userpwd = request.getParameter("password");
-		sql="select * from adminUser where ='"+username+"' and password = '"+userpwd+"'";
-		ResultSet flag =  new DBOpreate().executeQuery(sql);
-		if(flag != null){
-			return SUCCESS;
-		}else{
-			return ERROR;
+
+		if(username==null || username.equals("")){
+			return "failed";
+		}else if(userpwd == null || userpwd.equals("")){
+			return "failed";
 		}
+		sql="select * from adminUser where username='"+username+"' and password = '"+userpwd+"'";
+		System.out.println(sql);
+		ResultSet resultSet =  new DBOpreate().executeQuery(sql);
+		
+		
+		try {
+			if(resultSet.next()){
+				request.getSession().setAttribute("userName", username);
+				return SUCCESS;
+			}else{
+				return "failed";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "failed";
+
+		
+	
+
 	}
 	
 }

@@ -75,16 +75,23 @@
         
      <!-- ======================================后台管理action====================================== -->
         <action name="login" class="com.cn.struts2.action.LoginAction">
-    		<result name="success">/main.jsp</result>
-    		<result name="error">/forgot_password.jsp</result>
+
+    		<result name="success" type="redirect">/main.jsp</result>
+    		<result name="failed" type="redirect">/index.jsp</result>
     	</action>
-    	<action name="goods_insert" class="com.cn.struts2.action.GoodsOperationAction" method="goods_insert()">
-    		<result name="success">/main.jsp</result>
+    	 <action name="logout" class="com.cn.struts2.action.LogoutAction">
+    		<result name="success" type="redirect">/index.jsp</result>
+    		
     	</action>
-    	<action name="goods_show" class="com.cn.struts2.action.GoodsOperationAction" method="goods_show()">
-    		<result name="success">/main.jsp</result>
+		
+    	<action name="goods_insert" class="com.cn.struts2.action.GoodsOperationAction" method="goods_insert">
+    	
+    	</action>
+    	<action name="goods_show" class="com.cn.struts2.action.GoodsOperationAction" method="goods_show">
+    		
     	</action>
     	
+
     </package>
     <!-- 待完善 -->
     <package name="com.cn.struts2.action" namespace="/" extends="struts-default">
