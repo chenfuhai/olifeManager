@@ -33,6 +33,7 @@ public class GoodsOperationAction extends ActionSupport{
 		goodsName = request.getParameter("");
 		goodsIconUrl = request.getParameter("");
 		goodsDesc = request.getParameter("");
+		
 		StringBuffer sb1 = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		
@@ -48,6 +49,7 @@ public class GoodsOperationAction extends ActionSupport{
 			sb1.append("gooddesc").append(",");
 			sb2.append("'" + goodsDesc + "'").append(",");
 		}
+		
 		String result1 = sb1.toString().substring(0, sb1.toString().length()-1);
 		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
 		

@@ -14,7 +14,9 @@ public class Goods {
     private String desc;
     
     
-    public int getId() {
+    
+    
+	public int getId() {
 		return id;
 	}
 
