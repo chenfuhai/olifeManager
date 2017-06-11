@@ -32,7 +32,7 @@ public class FeedbackOperationAction extends ActionSupport{
     
 	public String feedback_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from feedback";
+		sql="select * from feedback order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		feedbackData = new ArrayList<>();
 		try {

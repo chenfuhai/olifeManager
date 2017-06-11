@@ -107,15 +107,20 @@ public class TestResultAction extends ActionSupport{
 		String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+""+sb9+""+sb10+""+sb11+""+sb12+""+sb13+""+sb14+""+sb15+""+sb16+""+sb17+""+sb18+""+sb19+""+sb20+""+sb21+""+sb22;
 		String result = sresult.substring(0, sresult.length()-1);
 		sql = "update onekeyResultRecord set "+result+" where id = "+id;
-		boolean flag =  new DBOpreate().execute(sql);
-		if(flag == true){
-			return SUCCESS;
+		ResultSet flag =  new DBOpreate().executeQuery(sql);
+		try {
+			if(flag.next()){
+				return SUCCESS;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}
 	public String TestResult_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from onekeyResultRecord";
+		sql="select * from onekeyResultRecord order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		ArrayList<OnekeyResultRecord> recordData = new ArrayList<>();
 		try {

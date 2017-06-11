@@ -176,6 +176,7 @@ public class GoodsOperationAction extends ActionSupport{
 		sql="select * from goods where id = '"+good.getId()+"'";
 		ResultSet result1 = new DBOpreate().executeQuery(sql);
 		try {
+
 			if(!result1.next()){
 				//不已经存在该名称,不能插入
 				response.getWriter().print("failed");
@@ -186,14 +187,17 @@ public class GoodsOperationAction extends ActionSupport{
 				if(flag2 == true){
 					response.getWriter().print("success");
 					return null;
+
 				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		}
 		
 		return null;

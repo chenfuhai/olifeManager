@@ -26,7 +26,7 @@ public class DiscOperationAction extends ActionSupport{
  
 	public String Disc_show(){
 		Gson gson = new GsonBuilder().create();
-		sql="select * from onekeySharedDisc";
+		sql="select * from onekeySharedDisc order by id desc";
 		ResultSet result =  new DBOpreate().executeQuery(sql);
 		try {
 			while(result.next()){
