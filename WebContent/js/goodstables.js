@@ -139,9 +139,8 @@ var ButtonInit = function () {
     		 		error:function (data){
     		 			alert(data+"error");
     		 		}
-    		        
+    		       
     		    }); 
-    		
     	});
     	
         $("#btn_edit").click(function () {
