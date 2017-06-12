@@ -264,7 +264,7 @@ var ButtonInit = function () {
         	var id=arrselections[0].id;
         	$.ajax({
                 type: "POST",
-                url: "/olifeManager/goods_delete.action",
+                url: "/olifeManager/feedback_delete.action",
                 data: "{'id':'"+id+"'}",
                 contentType: "application/json",
                 success: function (data, status) {

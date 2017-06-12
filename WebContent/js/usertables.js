@@ -181,7 +181,7 @@ var ButtonInit = function () {
 	    		        	var str = $(data).find("body").text();//获取返回的字符串
 	    		        	$.ajax({
 	    	                    type: "POST",
-	    	                    url: "/olifeManager/goods_update.action",
+	    	                    url: "/olifeManager/user_update.action",
 	    	                    data: "{'imgUrl':'"+str+"','age':'"+age+"','sex':'"+sex+"','brithday':'"+birthday+"','phone':'"+phone+"','id':'"+id+"','username':'"+name+"','password':'"+pwd+"','email':'"+email+"'}",
 	    	                    contentType: "application/json",
 	    	                    success: function (data, status) {
