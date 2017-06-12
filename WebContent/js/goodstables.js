@@ -142,13 +142,8 @@ var ButtonInit = function () {
     		        
     		    }); 
     		
-    		 
-    		
     	});
     	
-    	
-
-
         $("#btn_edit").click(function () {
             var arrselections = $("#tb_departments").bootstrapTable('getSelections');
 
