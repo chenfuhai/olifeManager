@@ -11,8 +11,25 @@
     <meta content='lab2023' name='author'>
     <meta content='' name='description'>
     <meta content='' name='keywords'>
-    <link href="assets/stylesheets/application-a07755f5.css" rel="stylesheet" type="text/css" /><link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+ 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+   <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="js/bootstrap-table-zh-CN.js"></script>
+	<link href="css/bootstrap-table.css" rel="stylesheet"/>
+   <script src="assets/javascripts/application-985b892b.js" type="text/javascript"></script>
+    <link href="assets/stylesheets/application-a07755f5.css" rel="stylesheet" type="text/css" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="js/feedbacktables.js"></script>
+ 
+ 
+   
+
+
     
   </head>
   <body class='main page'>
@@ -89,278 +106,160 @@
           <li><a href="#"> </a></li>
           <li class='active'> </a></li>
         </ul>
-        <div id='toolbar'>
-          
+        <div id='toolbar1'>
+
         </div>
       </section>
       <!-- Content -->
       <div id='content'>
-        <div class='panel panel-default grid'>
-          <div class='panel-heading'>
-            <i class='icon-table icon-large'></i>
-            	表名            
-          </div>
-          
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th class='actions'>
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class='success'>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-               
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr class='danger'>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr class='warning'>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr class='active'>
-                <td>4</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr class='disabled'>
-                <td>5</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td class='action'>
-                  <a class='btn btn-success' data-toggle='tooltip' href='#' title='Zoom'>
-                    <i class='icon-zoom-in'></i>
-                  </a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class='panel-footer'>
-            <ul class='pagination pagination-sm'>
-              <li>
-                <a href='#'>«</a>
-              </li>
-              <li class='active'>
-                <a href='#'>1</a>
-              </li>
-              <li>
-                <a href='#'>2</a>
-              </li>
-              <li>
-                <a href='#'>3</a>
-              </li>
-              <li>
-                <a href='#'>4</a>
-              </li>
-              <li>
-                <a href='#'>5</a>
-              </li>
-              <li>
-                <a href='#'>6</a>
-              </li>
-              <li>
-                <a href='#'>7</a>
-              </li>
-              <li>
-                <a href='#'>8</a>
-              </li>
-              <li>
-                <a href='#'>»</a>
-              </li>
-            </ul>
-            <div class='pull-right'>
-              Showing 1 to 10 of 32 entries
-            </div>
-          </div>
-        </div>
-      
-      </div>
+		<div class="panel-body" style="padding-bottom:0px;">
+
+	        <div id="toolbar" class="btn-group">
+	            <!--  <button id="btn_add" type="button" class="btn btn-default" data-target="#addModal">
+	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+	            </button> 
+	            <button id="btn_edit" type="button" class="btn btn-default" data-target="#editModal">
+	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+	            </button> -->
+	            <button id="btn_delete" type="button" class="btn btn-default" data-target="#waringModal">
+	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+	            </button>
+	            
+	        </div>
+	        <table id="tb_departments"></table>
+	    </div>
+   	 </div>
     </div>
-    <!-- Footer -->
-    <!-- Javascripts -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script><script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script><script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script><script src="assets/javascripts/application-985b892b.js" type="text/javascript"></script>
-    <!-- Google Analytics -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+   
+   
+       <!-- ===============确认框=========== -->
+<div class="modal fade" id="confirmModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
+	<div class="modal-dialog" style="width: 20%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="comfirmModalLable">提示</h4>
+			</div>
+			<div class="modal-body" id="confirmModalText">这是个确认框</div>
+            <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="confirmModalConfirmBtn" data-dismiss="modal">确认</button>
+            </div>
+		</div>
+	</div>
+</div>
+<!-- ===============警告框=========== -->
+<div class="modal fade" id="waringModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
+	<div class="modal-dialog" style="width: 20%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="waringModalLable">提示</h4>
+			</div>
+			<div class="modal-body" id="waringModalText">这是个警告框</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+		</div>
+	</div>
+</div>
+<!-- ==================添加数据框(未修改)============== -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLable" aria-hidden="true">
+	<div class="modal-dialog" >
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addModalLable">添加用户</h4>
+			</div>
+			<div class="modal-body" >
+				<form id="addForm" >
+					<div class="form-group">
+					 <label for="userName_add">用户名</label>
+					 <input type="text" class="form-control" id="userName_add" name="name" placeholder="填写用户名">
+					</div>
+					<div class="form-group">
+					 <label for="userName_add">用户名</label>
+					 <input type="text" class="form-control" id="userName_add" name="name" placeholder="填写用户名">
+					</div>
+					<div class="form-group">
+					 <label for="userName_add">用户名</label>
+					 <input type="text" class="form-control" id="userName_add" name="name" placeholder="填写用户名">
+					</div>
+				  <div class="form-group">
+					 <label for="goodUrl_add">商品链接</label>
+					 <input type="text" class="form-control" id="goodUrl_add" name="goodUrl" placeholder="商品点击链接的URL">
+					</div>
+					<div class="form-group">
+					 <label for="goodDesc_add">详细介绍</label>
+					 <textarea class="form-control" rows="5" id="goodDesc_add" name="name" placeholder="填写商品详细介绍"></textarea>
+					</div>	 		
+				</form>
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="addModalSubmitBtn">保存提交</button>
+            </div>
+		</div>
+	</div>
+</div>
+<!-- ==================编辑数据框============== -->
+ <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLable" aria-hidden="true">
+	<div class="modal-dialog" >
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="editModalLable">编辑反馈信息</h4>
+			</div>
+			<div class="modal-body" >
+				<form id="editForm" >
+					<div class="form-group">
+					
+					 <input type="hidden" class="form-control" id="feedbackId_edit" >
+					</div>
+					<div class="form-group">
+					 <label for="userId_edit">用户ID</label>
+					 <input type="text" class="form-control" id="userSex_edit"  placeholder="性别">
+					</div>
+					<div class="form-group">
+					 <label for="uesrName_edit">用户名</label>
+					 <input type="text" class="form-control" id="uesrName_edit"  placeholder="输入用户名">
+					</div>
+					
+					<div class="form-group">
+					 <label for="userfeedback_edit">反馈信息</label>
+					 <input type="text" class="form-control" id="userfeedback_edit"  placeholder="性别">
+					</div>
+					
+				   <div class="form-group">
+					 <label for="userSex_edit">性别</label>
+					 <input type="text" class="form-control" id="userSex_edit"  placeholder="性别">
+					</div>
+				   <div class="form-group">
+					 <label for="userAge_edit">年龄</label>
+					 <input type="text" class="form-control" id="userAge_edit"  placeholder="年龄">
+					</div>
+					 <div class="form-group">
+					 <label for="userQQ_edit">QQ</label>
+					 <input type="text" class="form-control" id="userQQ_edit"  placeholder="生日">
+					</div>
+				  <div class="form-group">
+					 <label for="userPhone_edit">手机号码</label>
+					 <input type="text" class="form-control" id="userPhone_edit"  placeholder="手机号码">
+					</div>
+					 <div class="form-group">
+					 <label for="userEmail_edit">电子邮箱</label>
+					 <input type="text" class="form-control" id="userEmail_edit"  placeholder="电子邮箱">
+					</div>		
+				</form>
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="editModalSubmitBtn">确认更改</button>
+            </div>
+		</div>
+	</div>
+</div>
+    
+    
   </body>
 </html>

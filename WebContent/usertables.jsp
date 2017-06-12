@@ -116,9 +116,9 @@
 		<div class="panel-body" style="padding-bottom:0px;">
 
 	        <div id="toolbar" class="btn-group">
-	            <button id="btn_add" type="button" class="btn btn-default" data-target="#addModal">
+	            <!--  <button id="btn_add" type="button" class="btn btn-default" data-target="#addModal">
 	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-	            </button>
+	            </button> -->
 	            <button id="btn_edit" type="button" class="btn btn-default" data-target="#editModal">
 	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 	            </button>
@@ -163,7 +163,7 @@
 		</div>
 	</div>
 </div>
-<!-- ==================添加数据框============== -->
+<!-- ==================添加数据框(未修改)============== -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLable" aria-hidden="true">
 	<div class="modal-dialog" >
 		<div class="modal-content">
@@ -178,10 +178,13 @@
 					 <input type="text" class="form-control" id="userName_add" name="name" placeholder="填写用户名">
 					</div>
 					<div class="form-group">
-				    <label for="goodfile_add">配图文件</label>
-				    <input type="file" id="goodfile_add" name="img">
-				    <p class="help-block">在文件框中选择商品的配图文件</p>
-				  </div>
+					 <label for="userName_add">用户名</label>
+					 <input type="text" class="form-control" id="userName_add" name="name" placeholder="填写用户名">
+					</div>
+					<div class="form-group">
+					 <label for="userName_add">用户名</label>
+					 <input type="text" class="form-control" id="userName_add" name="name" placeholder="填写用户名">
+					</div>
 				  <div class="form-group">
 					 <label for="goodUrl_add">商品链接</label>
 					 <input type="text" class="form-control" id="goodUrl_add" name="goodUrl" placeholder="商品点击链接的URL">
@@ -205,31 +208,48 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="editModalLable">编辑商品</h4>
+                <h4 class="modal-title" id="editModalLable">编辑用户信息</h4>
 			</div>
 			<div class="modal-body" >
 				<form id="editForm" >
 					<div class="form-group">
 					
-					 <input type="hidden" class="form-control" id="goodId_edit" >
+					 <input type="hidden" class="form-control" id="userId_edit" >
 					</div>
 					<div class="form-group">
-					 <label for="goodName_edit">商品名称</label>
-					 <input type="text" class="form-control" id="goodName_edit"  placeholder="商品名称">
+					 <label for="uesrName_edit">用户名</label>
+					 <input type="text" class="form-control" id="uesrName_edit"  placeholder="输入用户名">
 					</div>
+					 <div class="form-group">
+					 <label for="userPwd_edit">密码</label>
+					 <input type="password" class="form-control" id="userPwd_edit"  placeholder="用户密码">
+					</div>
+					
 					<div class="form-group">
-				    <label for="goodfile_edit">配图文件</label>
-				    <input type="file" id="goodfile_edit" name="img">
-				    <p class="help-block">在文件框中选择商品的配图文件</p>
+				    <label for="userfile_edit">头像文件</label>
+				    <input type="file" id="userfile_edit" name="img">
+				    <p class="help-block">在文件框中选择头像的文件</p>
 				  </div>
-				  <div class="form-group">
-					 <label for="goodUrl_edit">商品链接</label>
-					 <input type="text" class="form-control" id="goodUrl_edit"  placeholder="商品点击链接的URL">
+				   <div class="form-group">
+					 <label for="userSex_edit">性别</label>
+					 <input type="text" class="form-control" id="userSex_edit"  placeholder="性别">
 					</div>
-					<div class="form-group">
-					 <label for="goodDesc_edit">详细介绍</label>
-					 <textarea class="form-control" rows="5" id="goodDesc_edit"  placeholder="填写商品详细介绍"></textarea>
-					</div>	 		
+				   <div class="form-group">
+					 <label for="userAge_edit">年龄</label>
+					 <input type="text" class="form-control" id="userAge_edit"  placeholder="年龄">
+					</div>
+					 <div class="form-group">
+					 <label for="userBirthday_edit">生日</label>
+					 <input type="text" class="form-control" id="userBirthday_edit"  placeholder="生日">
+					</div>
+				  <div class="form-group">
+					 <label for="userPhone_edit">手机号码</label>
+					 <input type="text" class="form-control" id="userPhone_edit"  placeholder="手机号码">
+					</div>
+					 <div class="form-group">
+					 <label for="userEmail_edit">电子邮箱</label>
+					 <input type="text" class="form-control" id="userEmail_edit"  placeholder="电子邮箱">
+					</div>		
 				</form>
 			</div>
             <div class="modal-footer">
