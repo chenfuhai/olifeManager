@@ -116,10 +116,10 @@
 	        <div id="toolbar" class="btn-group">
 	            <!--  <button id="btn_add" type="button" class="btn btn-default" data-target="#addModal">
 	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-	            </button> -->
+	            </button> 
 	            <button id="btn_edit" type="button" class="btn btn-default" data-target="#editModal">
 	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-	            </button>
+	            </button>-->
 	            <button id="btn_delete" type="button" class="btn btn-default" data-target="#waringModal">
 	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 	            </button>

@@ -145,7 +145,7 @@ public class UserOperationAction extends ActionSupport{
 		return null; 
 	}	
 	
-	public String goods_delete(){
+	public String user_delete(){
 		String msg = null;
 		try {
 			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
@@ -167,7 +167,7 @@ public class UserOperationAction extends ActionSupport{
 			}
 		}{
 			//safe
-			String sql = "delete  user where id ="+user.getId();
+			String sql = "delete  ouser where id ="+user.getId();
 			boolean flag= new DBOpreate().execute(sql);
 			if(flag){
 				try {
@@ -252,7 +252,8 @@ public class UserOperationAction extends ActionSupport{
 			sb16="'" + user.getAge() + "',";
 		}
 		
-		sql = "select * from ouser where username = "+user.getUsername();
+		sql = "select * from ouser where username = '"+user.getUsername()+"'";
+	
 		ResultSet flag = new DBOpreate().executeQuery(sql);
 		try {
 			if(flag.next()){
@@ -262,8 +263,9 @@ public class UserOperationAction extends ActionSupport{
 				String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+""+sb9+""+sb10+""+sb11+""+sb12+""+sb13+""+sb14+""+sb15+""+sb16;
 				String result = sresult.substring(0, sresult.length()-1);
 				sql = "update ouser set "+result+" where id = "+user.getId();
+				
 				boolean flag2 =  new DBOpreate().execute(sql);
-				System.out.println(sql+flag2);
+				
 				if(flag2 == true){
 					try {
 						response.getWriter().print("success");

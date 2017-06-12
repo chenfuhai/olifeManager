@@ -91,6 +91,7 @@ public class DiscOperationAction extends ActionSupport {
 	public String Disc_show() {
 		Gson gson = new GsonBuilder().create();
 		sql = "select * from onekeySharedDisc order by id desc";
+		discs = new ArrayList<>();
 		ResultSet result = new DBOpreate().executeQuery(sql);
 		try {
 			while (result.next()) {
@@ -105,6 +106,7 @@ public class DiscOperationAction extends ActionSupport {
 				discs.add(disc);
 			}
 			String data = gson.toJson(discs);
+			System.out.println(data);
 			try {
 				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().print(data);

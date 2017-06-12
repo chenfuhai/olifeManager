@@ -48,62 +48,29 @@ var TableInit = function () {
                 checkbox: true
             }, {
                 field: 'id',
-                title: '分享ID'
+                title: '评论ID'
             }, {
-                field: 'resultMark',
-                title: '检测分数'
+                field: 'sharedMessageId',
+                title: '分享信息ID'
             }, {
-                field: 'ben',
-                title: '苯分数'
-            }, {
-                field: 'pm2_5',
-                title: 'PM2.5分数'
-            }, {
-                field: 'suggest',
-                title: '科学建议'
-            },{
-                field: 'lng',
-                title: '地点经度'
-            },{
-                field: 'lat',
-                title: '地点纬度'
-            },{
-                field: 'province',
-                title: '省份'
-            },{
-                field: 'district',
-                title: '地区'
-            },{
-                field: 'city',
-                title: '城市'
-            },{
-                field: 'street',
-                title: '街道'
-            },{
-                field: 'StreetNum',
-                title: '街道门号'
-            },{
                 field: 'userId',
                 title: '用户ID'
-            },{
+            }, {
                 field: 'username',
                 title: '用户名'
-            },{
+            }, {
                 field: 'userImgUrl',
                 title: '用户头像地址'
-            },{
-                field: 'userphone',
-                title: '手机号'
-            },{
-                field: 'useremail',
-                title: '邮箱'
-            },{
+            }, {
                 field: 'usersex',
                 title: '性别'
-            },{
+            }, {
                 field: 'userage',
                 title: '年龄'
-            },]
+            }, {
+                field: 'message',
+                title: '评论内容'
+            }]
         });
     };
 

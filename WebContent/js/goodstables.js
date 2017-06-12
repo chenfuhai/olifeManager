@@ -106,8 +106,8 @@ var ButtonInit = function () {
     		        fileElementId:'goodfile_add',//file选择文件的框的id
     		        //dataType:'json',//返回的是JSON数据 360浏览器等有可能自己加上自己的json导致json识别失败
     		        success: function (data){
-    		           alert(typeof data);
-    		           alert(data);
+    		           //alert(typeof data);
+    		           //alert(data);
     		           var str = $(data).find("body").text();//获取返回的字符串
     		           //接下去上传其他信息 以JSON形式 依照类的内容来传方便Gson解析
     		           var name = $("#goodName_add").val();
