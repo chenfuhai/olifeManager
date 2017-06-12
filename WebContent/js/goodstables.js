@@ -104,12 +104,14 @@ var ButtonInit = function () {
     		        url:'/olifeManager/UploadFile.action',//上传图片要提交到的action
     		        secureuri:false,//是否用安全提交，默认为false
     		        fileElementId:'goodfile_add',//file选择文件的框的id
-    		        dataType:'json',//返回的是JSON数据
+    		        //dataType:'json',//返回的是JSON数据 360浏览器等有可能自己加上自己的json导致json识别失败
     		        success: function (data){
-    		           //alert(data.result);
+    		           alert(typeof data);
+    		           alert(data);
+    		           var str = $(data).find("body").text();//获取返回的字符串
     		           //接下去上传其他信息 以JSON形式 依照类的内容来传方便Gson解析
     		           var name = $("#goodName_add").val();
-    		           var imgUrl = data.result;
+    		           var imgUrl = str;
     		           var url = $("#goodUrl_add").val();
     		           var desc = $("#goodDesc_add").text();
     		           //alert(name+"  "+imgUrl+"  "+url+"  "+desc);
@@ -206,12 +208,13 @@ var ButtonInit = function () {
 	    		        url:'/olifeManager/UploadFile.action',//上传图片要提交到的action
 	    		        secureuri:false,//是否用安全提交，默认为false
 	    		        fileElementId:'goodfile_edit',//file选择文件的框的id
-	    		        dataType:'json',//返回的是JSON数据
+	    		        //dataType:'json',//返回的是JSON数据
 	    		        success: function (data){
+	    		        	var str = $(data).find("body").text();//获取返回的字符串
 	    		        	$.ajax({
 	    	                    type: "POST",
 	    	                    url: "/olifeManager/goods_update.action",
-	    	                    data: "{'id':'"+id+"','iconurl':'"+data.result+"','name':'"+name+"','desc':'"+desc+"','url':'"+url+"'}",
+	    	                    data: "{'id':'"+id+"','iconurl':'"+str+"','name':'"+name+"','desc':'"+desc+"','url':'"+url+"'}",
 	    	                    contentType: "application/json",
 	    	                    success: function (data, status) {
 	    	                    
@@ -241,12 +244,18 @@ var ButtonInit = function () {
         });
         
         $("#btn_delete").click(function () {
-          
+        	var arrselections = $("#tb_departments").bootstrapTable('getSelections');
             if (arrselections.length <= 0) {
             	$("#waringModalText").html('请选择一项数据');
             	$("#waringModal").modal();
                 return;
             }
+            if (arrselections.length > 1) {
+                $("#waringModalText").html('只能选择一行进行删除');
+            	$("#waringModal").modal();
+                return;
+            }
+            
             $("#confirmModalText").html('您确认删除这一项吗？此操作不可恢复');
         	$("#confirmModal").modal();
            
@@ -262,12 +271,15 @@ var ButtonInit = function () {
                 contentType: "application/json",
                 success: function (data, status) {
                 
+                	//alert( typeof  data);
+                	//alert(data == "success");
                 	if (data == "success") {
                 		$("#comfirmModal").modal('hide');
-                		 $("#waringModalText").html('更新成功');
+                		 $("#waringModalText").html('删除成功');
+                		// alert("sdfsdfs");
                 		 $("#waringModal").modal();
                     }else{
-                    	alert("更新失败");
+                    	alert("删除失败");
                     }
                     $("#tb_departments").bootstrapTable('refresh');
                 },

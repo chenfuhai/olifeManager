@@ -13,31 +13,20 @@
     <meta content='' name='keywords'>
     
     
-    
-    <link href="assets/stylesheets/application-a07755f5.css" rel="stylesheet" type="text/css" /><link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
-
-   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-   <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
-   <script src="assets/javascripts/application-985b892b.js" type="text/javascript"></script>
-
-
-	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+   <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	
-	
 	<script type="text/javascript" src="js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="js/bootstrap-table-zh-CN.js"></script>
 	<link href="css/bootstrap-table.css" rel="stylesheet"/>
+   <script src="assets/javascripts/application-985b892b.js" type="text/javascript"></script>
+    <link href="assets/stylesheets/application-a07755f5.css" rel="stylesheet" type="text/css" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
 	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
-	
 	<script type="text/javascript" src="js/goodstables.js"></script>
-
-
-
-
-
+    
 
 
   </head>
@@ -128,10 +117,10 @@
 	            <button id="btn_add" type="button" class="btn btn-default" data-target="#addModal">
 	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 	            </button>
-	            <button id="btn_edit" type="button" class="btn btn-default">
+	            <button id="btn_edit" type="button" class="btn btn-default" data-target="#editModal">
 	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 	            </button>
-	            <button id="btn_delete" type="button" class="btn btn-default">
+	            <button id="btn_delete" type="button" class="btn btn-default" data-target="#waringModal">
 	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 	            </button>
 	            
@@ -139,10 +128,10 @@
 	        <table id="tb_departments"></table>
 	    </div>
    	 </div>
- 
+ </div>
 
 <!-- ===============确认框=========== -->
-<div class="modal fade" id="comfirmModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
+<div class="modal fade" id="confirmModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
 	<div class="modal-dialog" style="width: 20%;">
 		<div class="modal-content">
 			<div class="modal-header">

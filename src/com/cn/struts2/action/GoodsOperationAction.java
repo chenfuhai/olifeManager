@@ -67,7 +67,7 @@ public class GoodsOperationAction extends ActionSupport{
 		
 		sql="select * from goods where goodname = '"+good.getName()+"'"+"order by id desc";
 		
-		
+		System.out.println(sql);
 		ResultSet resultSet=new DBOpreate().executeQuery(sql);
 		
 		try {
@@ -116,7 +116,7 @@ public class GoodsOperationAction extends ActionSupport{
 				goods.setUrl(result.getString("goodUrl"));
 				goodsData.add(goods);
 			}
-			//灏嗘暟鎹泦鍚堝彂閫佸埌jsp椤甸潰
+			
 			
 			String data = gson.toJson(goodsData);
 			
@@ -148,25 +148,25 @@ public class GoodsOperationAction extends ActionSupport{
 			//do not execute the sql
 			response.setContentType("text/html;charset=UTF-8");
 			try {
-				response.getWriter().println("failed");
+				response.getWriter().print("failed");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}{
 			//safe
-			String sql = "delete table goods where id ="+good.getId();
+			String sql = "delete  goods where id ="+good.getId();
 			boolean flag= new DBOpreate().execute(sql);
 			if(flag){
 				try {
-					response.getWriter().println("success");
+					response.getWriter().print("success");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}else{
 				try {
-					response.getWriter().println("failed");
+					response.getWriter().print("failed");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -222,12 +222,13 @@ public class GoodsOperationAction extends ActionSupport{
 		try {
 
 			if(!result1.next()){
-				//涓嶅凡缁忓瓨鍦ㄨ鍚嶇О,涓嶈兘鎻掑叆
+				
 				response.getWriter().print("failed");
 				return null;
 			}else{
 				sql="update goods set "+result+" where id = "+good.getId();
 				boolean flag2 =  new DBOpreate().execute(sql);
+				System.out.println(sql+flag2);
 				if(flag2 == true){
 					response.getWriter().print("success");
 					return null;

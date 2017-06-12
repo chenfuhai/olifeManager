@@ -107,7 +107,7 @@ public class UploadFile {
 			}
 		}
 		
-		result = "{'result':"+"'"+result+"'"+"}";
+		
 		out.print(result);
 		out.close();
 	
