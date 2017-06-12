@@ -20,7 +20,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#tb_departments').bootstrapTable({
-            url: '/LWD/test2.action',         //请求后台的URL（*）
+            url: '/olifeManager/feedback_show.action',         //请求后台的URL（*）
             method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -47,18 +47,31 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             }, {
-                field: 'Name',
-                title: '部门名称'
+                field: 'id',
+                title: '反馈ID'
             }, {
-                field: 'ParentName',
-                title: '上级部门'
+                field: 'feedbackMsg',
+                title: '反馈信息'
             }, {
-                field: 'Level',
-                title: '部门级别'
+                field: 'username',
+                title: '用户名'
             }, {
-                field: 'Desc',
-                title: '描述'
-            }, ]
+                field: 'userage',
+                title: '用户年龄'
+            }, {
+                field: 'usersex',
+                title: '用户性别'
+            },{
+                field: 'email',
+                title: '用户邮箱'
+            },{
+                field: 'qq',
+                title: '用户qq'
+            },{
+                field: 'phone',
+                title: '用户电话'
+            },   
+            ]
         });
     };
 
