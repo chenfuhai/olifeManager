@@ -15,12 +15,101 @@ import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import entity.Goods;
 import entity.User;
 import utils.DBOpreate;
+import utils.NetUtils;
 public class UserOperationAction extends ActionSupport{
 	HttpServletRequest request = ServletActionContext.getRequest();
 	HttpServletResponse response = ServletActionContext.getResponse();
 	private String sql;
+	public String user_insert(){
+		String msg = null;
+		try {
+			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		User user = gson.fromJson(msg, User.class);
+		System.out.println(msg);
+		
+		
+		StringBuffer sb1 = new StringBuffer();
+		StringBuffer sb2 = new StringBuffer();
+		
+		if (user.getUsername() != null) {
+			sb1.append("username").append(",");
+			sb2.append("'" + user.getUsername() + "'").append(",");
+		}
+		if (user.getPassword() != null) {
+			sb1.append("userpwd").append(",");
+			sb2.append("'" + user.getPassword() + "'").append(",");
+		}
+		if (user.getSex() != null) {
+			sb1.append("sex").append(",");
+			sb2.append("'" + user.getSex() + "'").append(",");
+		}
+		if (user.getImgUrl() != null) {
+			sb1.append("imgUrl").append(",");
+			sb2.append("'" + user.getImgUrl() + "'").append(",");
+		}
+		if (user.getBrithday() != null) {
+			sb1.append("brithday").append(",");
+			sb2.append("'" + user.getBrithday() + "'").append(",");
+		}
+		if (user.getEmail() != null) {
+			sb1.append("email").append(",");
+			sb2.append("'" + user.getEmail() + "'").append(",");
+		}
+		if (user.getPhone() != null) {
+			sb1.append("phone").append(",");
+			sb2.append("'" + user.getPhone() + "'").append(",");
+		}
+		if (user.getAge() != null) {
+			sb1.append("age").append(",");
+			sb2.append("'" + user.getAge() + "'").append(",");
+		}
+		
+		String result1 = sb1.toString().substring(0, sb1.toString().length()-1);
+		String result2 = sb2.toString().substring(0, sb2.toString().length()-1);
+		
+		sql="select * from ouser where goodname = '"+user.getUsername()+"'"+"order by id desc";
+		
+		System.out.println(sql);
+		ResultSet resultSet=new DBOpreate().executeQuery(sql);
+		
+		try {
+			if(resultSet.next()){
+				try {
+					response.getWriter().print("failed");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return null;
+				
+			}else{
+				sql="insert into ouser("+result1+") values("+result2+")";
+				boolean flag =  new DBOpreate().execute(sql);
+				if(flag == true){
+					try {
+						response.getWriter().print("success");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return null;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public String user_show(){
 		Gson gson = new GsonBuilder().create();
@@ -56,16 +145,62 @@ public class UserOperationAction extends ActionSupport{
 		return null; 
 	}	
 	
+	public String goods_delete(){
+		String msg = null;
+		try {
+			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		User user = gson.fromJson(msg, User.class);
+		System.out.println(msg);
+		if(user.getId()==0 || user.getId()==-1){
+			//do not execute the sql
+			response.setContentType("text/html;charset=UTF-8");
+			try {
+				response.getWriter().print("failed");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}{
+			//safe
+			String sql = "delete  user where id ="+user.getId();
+			boolean flag= new DBOpreate().execute(sql);
+			if(flag){
+				try {
+					response.getWriter().print("success");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+				try {
+					response.getWriter().print("failed");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		return null;
+	}
+	
 	public String user_update(){
-		String userId = request.getParameter("");
-		String username = request.getParameter("");
-		String userpwd = request.getParameter("");
-		String userphone = request.getParameter("");
-		String usersex = request.getParameter("");
-		String userimgUrl = request.getParameter("");
-		String userbrithday = request.getParameter("");
-		String useremail = request.getParameter("");
-		String userage = request.getParameter("");
+		String msg = null;
+		try {
+			msg = NetUtils.readString(ServletActionContext.getRequest().getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		User user = gson.fromJson(msg, User.class);
+		System.out.println(msg);
 		
 		String sb1 = new String();
 		String sb2 = new String();
@@ -84,40 +219,40 @@ public class UserOperationAction extends ActionSupport{
 		String sb15 = new String();
 		String sb16= new String();
 		
-		if (username != null) {
+		if (user.getUsername() != null) {
 			sb1="username=";
-			sb2="'" + username + "',";
+			sb2="'" + user.getUsername() + "',";
 		}
-		if (userpwd != null) {
+		if (user.getPassword() != null) {
 			sb3="userpwd=";
-			sb4="'" + userpwd + "',";
+			sb4="'" + user.getPassword() + "',";
 		}
-		if (userphone != null) {
+		if (user.getPhone() != null) {
 			sb5="phone=";
-			sb6="'" + userphone + "',";
+			sb6="'" + user.getPhone() + "',";
 		}
-		if (usersex != null) {
+		if (user.getSex() != null) {
 			sb7="sex=";
-			sb8="'" + usersex + "',";
+			sb8="'" + user.getSex() + "',";
 		}
-		if (userbrithday != null) {
+		if (user.getBrithday() != null) {
 			sb9="brithday=";
-			sb10="'" + userbrithday + "',";
+			sb10="'" + user.getBrithday() + "',";
 		}
-		if (useremail != null) {
+		if (user.getEmail() != null) {
 			sb11="email=";
-			sb12="'" + useremail + "',";
+			sb12="'" + user.getEmail() + "',";
 		}
-		if (userimgUrl != null) {
+		if (user.getImgUrl() != null) {
 			sb13="imgUrl=";
-			sb14="'" + userimgUrl + "',";
+			sb14="'" + user.getImgUrl() + "',";
 		}
-		if(userage!=null){
+		if(user.getAge()!=null){
 			sb15="age=";
-			sb16="'" + userage + "',";
+			sb16="'" + user.getAge() + "',";
 		}
 		
-		sql = "select * from ouser where username = "+username;
+		sql = "select * from ouser where username = "+user.getUsername();
 		ResultSet flag = new DBOpreate().executeQuery(sql);
 		try {
 			if(flag.next()){
@@ -126,11 +261,18 @@ public class UserOperationAction extends ActionSupport{
 			}else{
 				String sresult = sb1+""+sb2+""+sb3+""+sb4+""+sb5+""+sb6+""+sb7+""+sb8+""+sb9+""+sb10+""+sb11+""+sb12+""+sb13+""+sb14+""+sb15+""+sb16;
 				String result = sresult.substring(0, sresult.length()-1);
-				sql = "update ouser set "+result+" where id = "+userId;
-				System.out.println(sql);
-				ResultSet flag2 =  new DBOpreate().executeQuery(sql);
-				if(flag2.next()){
-					return SUCCESS;
+				sql = "update ouser set "+result+" where id = "+user.getId();
+				boolean flag2 =  new DBOpreate().execute(sql);
+				System.out.println(sql+flag2);
+				if(flag2 == true){
+					try {
+						response.getWriter().print("success");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return null;
+
 				}
 			}
 		} catch (SQLException e) {

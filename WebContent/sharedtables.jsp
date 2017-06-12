@@ -11,8 +11,10 @@
     <meta content='lab2023' name='author'>
     <meta content='' name='description'>
     <meta content='' name='keywords'>
+
       
    	<script src="http://code.jquery.com/jquery-latest.js"></script>
+
    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js" type="text/javascript"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -25,11 +27,7 @@
     <link href="assets/images/favicon.ico" rel="icon" type="image/ico" />
 	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="js/sharedtables.js"></script>
- 
- 
-   
-   
-   
+
   </head>
   <body class='main page'>
   <c:if test="${sessionScope.userName==null}">
@@ -106,11 +104,12 @@
           <li><a href="#"> </a></li>
           <li class='active'> </a></li>
         </ul>
-        <div id='toolbar'>
+        <div id='toolbar1'>
           
         </div>
       </section>
       <!-- Content -->
+
      <div id='content'>
 		<div class="panel-body" style="padding-bottom:0px;">
 
@@ -129,7 +128,9 @@
 	        <table id="tb_departments"></table>
 	    </div>
    	 </div>
+
     </div>
+
    <!-- ===============确认框=========== -->
 <div class="modal fade" id="confirmModal" tabindex="-1"  role="dialog" aria-labelledby="waringModalLable" aria-hidden="true">
 	<div class="modal-dialog" style="width: 20%;">
@@ -161,5 +162,6 @@
 		</div>
 	</div>
 </div>   
+
   </body>
 </html>

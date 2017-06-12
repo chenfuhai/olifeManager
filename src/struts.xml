@@ -107,13 +107,37 @@
         <action name="Disc_show" class="com.cn.struts2.action.DiscOperationAction" method="Disc_show">
     		
     	</action>
+    	<action name="disc_insert" class="com.cn.struts2.action.DiscOperationAction" method="disc_insert">
+    		
+    	</action>
+    	<action name="disc_delete" class="com.cn.struts2.action.DiscOperationAction" method="disc_delete">
+    		
+    	</action>
+    	<action name="disc_update" class="com.cn.struts2.action.DiscOperationAction" method="disc_update">
+    		
+    	</action>
     	<action name="feedback_show" class="com.cn.struts2.action.FeedbackOperationAction" method="feedback_show">
+    		
+    	</action>
+    	<action name="feedback_insert" class="com.cn.struts2.action.FeedbackOperationAction" method="feedback_insert">
+    		
+    	</action>
+    	<action name="feedback_delete" class="com.cn.struts2.action.FeedbackOperationAction" method="feedback_delete">
+    		
+    	</action>
+    	<action name="feedback_update" class="com.cn.struts2.action.FeedbackOperationAction" method="feedback_update">
     		
     	</action>
     	<action name="goods_update" class="com.cn.struts2.action.GoodsOperationAction" method="goods_update">
     		
     	</action>
     	<action name="Share_show" class="com.cn.struts2.action.ShareOperationAction" method="Share_show">
+    		
+    	</action>
+    	<action name="share_insert" class="com.cn.struts2.action.ShareOperationAction" method="share_insert">
+    		
+    	</action>
+    	<action name="share_delete" class="com.cn.struts2.action.ShareOperationAction" method="share_delete">
     		
     	</action>
     	<action name="Share_update" class="com.cn.struts2.action.ShareOperationAction" method="Share_update">
@@ -129,6 +153,12 @@
     		
     	</action>
     	<action name="user_update" class="com.cn.struts2.action.UserOperationAction" method="user_update">
+    		
+    	</action>
+    	<action name="user_delete" class="com.cn.struts2.action.UserOperationAction" method="user_delete">
+    		
+    	</action>
+    	<action name="user_insert" class="com.cn.struts2.action.UserOperationAction" method="user_insert">
     		
     	</action>
     	

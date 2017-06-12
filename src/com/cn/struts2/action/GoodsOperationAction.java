@@ -133,6 +133,7 @@ public class GoodsOperationAction extends ActionSupport{
 		}
 		return null;
 	}
+	
 	public String goods_delete(){
 		String msg = null;
 		try {
